@@ -1,0 +1,3022 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>CHRONO PULSE Ω — 하이엔드 6-in-1 타임 스위트</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent-1: #38bdf8;
+      --accent-2: #818cf8;
+      --accent-3: #c084fc;
+      --accent-glow: rgba(56, 189, 248, 0.45);
+      --accent-glow-2: rgba(129, 140, 248, 0.35);
+      --bg-card: rgba(9, 14, 28, 0.88);
+      --border-card: rgba(255, 255, 255, 0.18);
+    }
+
+    [data-theme="aurora"] {
+      --accent-1: #38bdf8;
+      --accent-2: #818cf8;
+      --accent-3: #c084fc;
+      --accent-glow: rgba(56, 189, 248, 0.45);
+      --accent-glow-2: rgba(129, 140, 248, 0.35);
+    }
+    [data-theme="solar"] {
+      --accent-1: #fb923c;
+      --accent-2: #f43f5e;
+      --accent-3: #facc15;
+      --accent-glow: rgba(251, 146, 60, 0.45);
+      --accent-glow-2: rgba(244, 63, 94, 0.35);
+    }
+    [data-theme="emerald"] {
+      --accent-1: #34d399;
+      --accent-2: #38bdf8;
+      --accent-3: #a3e635;
+      --accent-glow: rgba(52, 211, 153, 0.45);
+      --accent-glow-2: rgba(56, 189, 248, 0.35);
+    }
+    [data-theme="cyberpunk"] {
+      --accent-1: #facc15;
+      --accent-2: #22d3ee;
+      --accent-3: #f43f5e;
+      --accent-glow: rgba(250, 204, 21, 0.45);
+      --accent-glow-2: rgba(34, 211, 238, 0.35);
+    }
+    [data-theme="supernova"] {
+      --accent-1: #fb7185;
+      --accent-2: #a78bfa;
+      --accent-3: #2dd4bf;
+      --accent-glow: rgba(251, 113, 133, 0.45);
+      --accent-glow-2: rgba(167, 139, 250, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #030712;
+      color: #f8fafc;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    .font-mono-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Ultra-Fast Solid Matte Luxury Card (Zero Backdrop-Filter Lag) */
+    .glass-panel {
+      position: relative;
+      background: linear-gradient(180deg, #0d1527 0%, #080d1a 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-pill {
+      background: #131c31;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Hardware-Accelerated 60fps View Carousel Transitions */
+    .viewport-mask {
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .views-track {
+      display: flex;
+      width: 600%;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .view-slide {
+      width: 16.666667%;
+      flex-shrink: 0;
+      padding: 0.35rem 0.85rem 0.9rem 0.85rem;
+      transition: opacity 0.38s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-origin: center center;
+    }
+
+    .view-slide.inactive-left,
+    .view-slide.inactive-right {
+      opacity: 0.2;
+      transform: scale(0.95);
+      pointer-events: none;
+    }
+
+    .view-slide.active-slide {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    /* Subtle Elegant Glow for Digits (High Readability) */
+    .neon-digit-glow {
+      text-shadow: 0 2px 14px var(--accent-glow);
+    }
+
+    /* Nav Indicator Morph (6 Tabs) */
+    .nav-indicator {
+      transition: transform 0.58s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s ease, box-shadow 0.4s ease;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 4px 20px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+
+    .accent-gradient-text {
+      background: linear-gradient(135deg, #ffffff 10%, var(--accent-1) 55%, var(--accent-2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .btn-primary-glow {
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 6px 24px -2px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+      transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .btn-primary-glow:hover {
+      transform: translateY(-1.5px) scale(1.02);
+      box-shadow: 0 10px 30px 0px var(--accent-glow), inset 0 1px 1px rgba(255, 255, 255, 0.65);
+    }
+
+    .btn-primary-glow:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Smooth Luxury Gyroscope Rings */
+    @keyframes spinClockwise {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    @keyframes spinCounterClockwise {
+      from { transform: rotate(360deg); }
+      to { transform: rotate(0deg); }
+    }
+
+    .gyro-ring-cw {
+      transform-origin: center;
+      animation: spinClockwise 32s linear infinite;
+    }
+    .gyro-ring-ccw {
+      transform-origin: center;
+      animation: spinCounterClockwise 24s linear infinite;
+    }
+    .gyro-ring-fast {
+      transform-origin: center;
+      animation: spinClockwise 14s linear infinite;
+    }
+
+    /* Ripple Animation */
+    .ripple-btn {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ripple-Wave {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: rippleAnim 0.6s ease-out;
+      background: radial-gradient(circle, rgba(255,255,255,0.45) 0%, var(--accent-1) 60%, transparent 100%);
+      pointer-events: none;
+    }
+
+    @keyframes rippleAnim {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulseRing {
+      0% { transform: scale(0.95); opacity: 0.55; }
+      50% { transform: scale(1.04); opacity: 0.22; }
+      100% { transform: scale(0.95); opacity: 0.55; }
+    }
+
+    .active-halo {
+      animation: pulseRing 3s ease-in-out infinite;
+    }
+
+    @keyframes alarmPulse {
+      0%, 100% { box-shadow: 0 0 25px 4px rgba(244, 63, 94, 0.75); }
+      50% { box-shadow: 0 0 55px 16px rgba(244, 63, 94, 0.45); }
+    }
+
+    .alarm-firing {
+      animation: alarmPulse 1s ease-in-out infinite;
+      border-color: rgba(244, 63, 94, 0.95) !important;
+    }
+
+    /* Breathing Guide Circle */
+    .breath-orb {
+      transition: transform 0.15s linear, box-shadow 0.3s ease;
+      background: radial-gradient(circle, #ffffff 0%, var(--accent-1) 45%, var(--accent-2) 80%, transparent 100%);
+      box-shadow: 0 0 40px var(--accent-glow), 0 0 75px var(--accent-glow-2);
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.4);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.45);
+      border-radius: 9999px;
+    }
+
+    /* Adaptive Mobile & Tablet Responsive Layout System */
+    body {
+      min-height: 100dvh;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+      padding-left: env(safe-area-inset-left, 0px);
+      padding-right: env(safe-area-inset-right, 0px);
+      touch-action: pan-y;
+    }
+
+    /* Compact Phone Optimization (< 640px) */
+    @media (max-width: 639px) {
+      .view-slide {
+        padding: 0.25rem 0.65rem 0.65rem 0.65rem;
+      }
+      .glass-panel {
+        border-radius: 1.35rem;
+      }
+      .tap-target {
+        min-height: 40px;
+      }
+    }
+
+    /* Tablet & Wide Screen Optimization (768px ~ 1280px+) */
+    @media (min-width: 768px) {
+      .app-shell-container {
+        max-width: 56rem !important; /* 896px wide tablet canvas */
+      }
+      .view-slide {
+        padding: 0.65rem 1.5rem 1.25rem 1.5rem;
+      }
+      .tablet-dial-scale {
+        width: 15.5rem !important;
+        height: 15.5rem !important;
+      }
+      .glass-panel {
+        padding: 1.5rem 1.85rem !important;
+      }
+    }
+
+    /* Landscape Mobile / Compact Height Optimization */
+    @media (max-height: 700px) and (orientation: landscape) {
+      .tablet-dial-scale {
+        width: 10.5rem !important;
+        height: 10.5rem !important;
+      }
+      .glass-panel {
+        padding: 0.75rem 1.15rem !important;
+      }
+    }
+  </style>
+</head>
+<body data-theme="aurora" class="min-h-screen flex flex-col justify-between relative selection:bg-sky-500 selection:text-white">
+
+
+  <!-- Top App Bar -->
+  <header class="app-shell-container relative z-20 w-full max-w-2xl mx-auto px-3 sm:px-5 pt-2.5 sm:pt-4 pb-1 flex flex-wrap items-center justify-between gap-2">
+    <div class="flex items-center gap-2.5">
+      <div class="w-9 h-9 rounded-xl btn-primary-glow flex items-center justify-center shadow-lg">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"></path>
+        </svg>
+      </div>
+      <div>
+        <div class="flex items-center gap-1.5">
+          <h1 class="text-sm font-black tracking-wider uppercase accent-gradient-text leading-none">Chrono Pulse Ω</h1>
+          <span class="px-1.5 py-0.5 text-[9px] font-bold uppercase rounded bg-sky-500/20 text-sky-200 border border-sky-400/40">LUXURY EDITION</span>
+        </div>
+        <p class="text-[11px] text-slate-200 font-medium mt-0.5" id="headerSubtitle">시계 · 스톱워치 · 타이머 · 알람 · 포모도로 · 메트로놈</p>
+      </div>
+    </div>
+
+    <!-- Right Controls: Visual FX Mode Cycler, Themes, Voice TTS, Sound, App Guide -->
+    <div class="flex items-center gap-1.5 flex-wrap">
+      <!-- Visual Background Engine Switcher -->
+      <button id="fxBoostBtn" title="배경 비주얼 스타일 전환" class="ripple-btn glass-pill px-2.5 h-8 rounded-full flex items-center gap-1 text-[11px] font-bold text-sky-300 border border-sky-400/50 hover:bg-sky-500/20 transition">
+        <span>🌌</span>
+        <span id="fxBoostLabel">OMEGA ALL</span>
+      </button>
+
+      <!-- Theme Switcher (5 Luxury Neon Presets) -->
+      <div class="glass-pill p-1 rounded-full flex items-center gap-1" role="group" aria-label="테마 선택">
+        <button id="themeAurora" data-theme-btn="aurora" title="오로라 블루" class="w-4 h-4 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500 ring-2 ring-white scale-110 transition-transform"></button>
+        <button id="themeSolar" data-theme-btn="solar" title="솔라 골드" class="w-4 h-4 rounded-full bg-gradient-to-tr from-orange-400 to-rose-500 opacity-60 hover:opacity-100 transition-all"></button>
+        <button id="themeEmerald" data-theme-btn="emerald" title="에메랄드 민트" class="w-4 h-4 rounded-full bg-gradient-to-tr from-emerald-400 to-sky-500 opacity-60 hover:opacity-100 transition-all"></button>
+        <button id="themeCyber" data-theme-btn="cyberpunk" title="사이버 네온" class="w-4 h-4 rounded-full bg-gradient-to-tr from-yellow-300 via-rose-500 to-cyan-400 opacity-60 hover:opacity-100 transition-all"></button>
+        <button id="themeSupernova" data-theme-btn="supernova" title="로즈 바이올렛" class="w-4 h-4 rounded-full bg-gradient-to-tr from-rose-400 via-violet-500 to-teal-300 opacity-60 hover:opacity-100 transition-all"></button>
+      </div>
+
+      <!-- Voice Briefing Button -->
+      <button id="speakTimeBtn" title="현재 시각 AI 음성 브리핑" class="ripple-btn glass-pill px-2.5 h-8 rounded-full flex items-center gap-1 text-[11px] font-bold text-amber-200 hover:bg-amber-500/20 transition">
+        <span>🗣️</span>
+        <span class="hidden sm:inline">음성안내</span>
+      </button>
+
+      <!-- Sound Toggle -->
+      <button id="soundToggleBtn" title="사운드 효과 켜기/끄기" class="ripple-btn glass-pill w-8 h-8 rounded-full flex items-center justify-center text-sky-300 hover:text-white hover:bg-slate-800/80 transition">
+        <svg id="soundOnIcon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14"></path>
+        </svg>
+        <svg id="soundOffIcon" class="w-4 h-4 hidden text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6"></path>
+        </svg>
+      </button>
+
+      <!-- Mobile Install / APK Guide Modal Button -->
+      <button id="apkGuideBtn" title="모바일 앱 설치 안내" class="ripple-btn glass-pill px-2.5 h-8 rounded-full flex items-center gap-1 text-[11px] font-bold text-slate-100 hover:text-white hover:bg-slate-800/80 transition">
+        <span>📱</span>
+        <span class="hidden sm:inline">앱 모드</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Interactive 6-View Viewport -->
+  <main class="app-shell-container relative z-10 flex-1 flex flex-col justify-center w-full max-w-2xl mx-auto overflow-hidden">
+    <div id="swipeArea" class="viewport-mask">
+      <div id="viewsTrack" class="views-track">
+
+        <!-- ======================= VIEW 0: CLOCK (3 Face Styles + 7-Decimal Progress + 8 Cities) ======================= -->
+        <section id="viewClock" class="view-slide active-slide flex flex-col items-center justify-between gap-3">
+          <div id="tiltCard0" class="tilt-card glass-panel w-full rounded-3xl p-4 sm:p-5 flex flex-col items-center relative overflow-hidden">
+            
+            <!-- Mode & Dial Face Switcher Sub-bar -->
+            <div class="w-full flex flex-wrap items-center justify-between gap-1.5 mb-1.5 z-10">
+              <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+                <span id="clockZoneLabel" class="text-xs font-extrabold tracking-wider text-white uppercase">SEOUL (KST)</span>
+                <span id="clockDateDisplay" class="text-xs font-semibold text-slate-300 hidden sm:inline">• 2026년 11월 15일 일요일</span>
+              </div>
+              <div class="flex items-center gap-1 flex-wrap">
+                <button id="clockFaceModeBtn" class="ripple-btn glass-pill px-2.5 py-1 rounded-lg text-[11px] font-bold text-amber-200 border border-amber-400/40 hover:bg-amber-500/20 transition">
+                  🌀 모드: 아날로그 자이로
+                </button>
+                <button id="fireworkTestBtn" class="ripple-btn glass-pill px-2.5 py-1 rounded-lg text-[11px] font-bold text-sky-200 hover:bg-sky-500/20 transition">
+                  ✨ 쇼크웨이브 폭발
+                </button>
+                <button id="toggle24hBtn" class="ripple-btn glass-pill px-2 py-1 rounded-lg text-[11px] font-bold text-sky-300 hover:bg-slate-700/60 transition">
+                  24H
+                </button>
+                <button id="toggleTickSoundBtn" class="ripple-btn glass-pill px-2 py-1 rounded-lg text-[11px] font-semibold text-slate-300 hover:text-white transition">
+                  초침음 OFF
+                </button>
+              </div>
+            </div>
+
+            <!-- Clock Sub-Face A: Analog + Luxury Gyroscope Ring -->
+            <div id="clockFaceAnalog" class="tablet-dial-scale relative w-44 h-44 sm:w-56 sm:h-56 flex items-center justify-center my-0.5">
+              <div class="absolute inset-6 rounded-full pointer-events-none active-halo"
+                   style="background: radial-gradient(circle, var(--accent-glow) 0%, var(--accent-glow-2) 50%, transparent 72%); "></div>
+
+              <svg class="w-full h-full -rotate-90 overflow-visible" viewBox="0 0 260 260">
+                <defs>
+                  <linearGradient id="clockGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="var(--accent-1)" />
+                    <stop offset="50%" stop-color="var(--accent-2)" />
+                    <stop offset="100%" stop-color="var(--accent-3)" />
+                  </linearGradient>
+                  <filter id="neonGlow" x="-30%" y="-30%" width="160%" height="160%">
+                    <feGaussianBlur stdDeviation="3.5" result="blur1" />
+                    <feMerge>
+                      <feMergeNode in="blur1" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <!-- Refined Counter-Rotating Gyro Rings -->
+                <circle cx="130" cy="130" r="122" fill="none" stroke="url(#clockGrad)" stroke-width="1.5"
+                        stroke-dasharray="18 10 4 10 40 14" class="gyro-ring-cw opacity-60" />
+                <circle cx="130" cy="130" r="115" fill="none" stroke="var(--accent-1)" stroke-width="1.2"
+                        stroke-dasharray="8 18 32 12" class="gyro-ring-ccw opacity-45" />
+
+                <!-- Main Dial Track -->
+                <circle cx="130" cy="130" r="104" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="7" />
+                
+                <!-- Smooth Sweeping Seconds Arc -->
+                <circle id="clockSecArc" cx="130" cy="130" r="104" fill="none" stroke="url(#clockGrad)" stroke-width="7"
+                        stroke-linecap="round" stroke-dasharray="653.45" stroke-dashoffset="653.45" />
+
+                <!-- Glowing Comet Head on Second Ring -->
+                <g id="clockCometGroup" transform="rotate(90 130 130)">
+                  <circle id="clockSecOrb" cx="130" cy="26" r="5" fill="#ffffff" />
+                </g>
+
+                <!-- 60 Minute/Hour Ticks Group -->
+                <g id="clockTicksGroup" transform="rotate(90 130 130)"></g>
+
+                <!-- Analog Hands Group -->
+                <g transform="rotate(90 130 130)">
+                  <line id="analogHourHand" x1="130" y1="130" x2="130" y2="76" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" />
+                  <line id="analogMinHand" x1="130" y1="130" x2="130" y2="54" stroke="var(--accent-1)" stroke-width="3.8" stroke-linecap="round" />
+                  <line id="analogSecHand" x1="130" y1="146" x2="130" y2="38" stroke="var(--accent-3)" stroke-width="2" stroke-linecap="round" />
+                  <circle cx="130" cy="130" r="6.5" fill="var(--accent-1)" />
+                  <circle cx="130" cy="130" r="2.8" fill="#ffffff" />
+                </g>
+              </svg>
+
+              <!-- High-Contrast Floating Digital Overlay Inside Ring -->
+              <div class="absolute inset-0 flex flex-col items-center justify-end pb-6 pointer-events-none">
+                <div class="px-3 py-1 rounded-2xl bg-slate-950/85 border border-white/15 backdrop-blur-md text-center shadow-lg">
+                  <span id="clockAmPm" class="block text-[9px] font-extrabold tracking-widest uppercase text-sky-300">24H CHRONO</span>
+                  <div id="clockMainDigitsBox" class="font-mono-num text-2xl sm:text-3xl font-black tracking-tight text-white neon-digit-glow leading-tight">
+                    <span id="clockDigitsHM">00:00</span><span id="clockDigitsSec" class="text-base text-sky-300 ml-0.5">:00</span><span id="clockDigitsMs" class="text-xs text-indigo-300 ml-0.5">.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Clock Sub-Face B: Polar Concentric Orbital Arcs -->
+            <div id="clockFacePolar" class="tablet-dial-scale hidden relative w-44 h-44 sm:w-56 sm:h-56 items-center justify-center my-0.5">
+              <canvas id="polarClockCanvas" width="240" height="240" class="w-full h-full"></canvas>
+              <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                <span class="text-[10px] font-black uppercase tracking-widest text-indigo-300">POLAR ORBITAL</span>
+                <span id="polarCenterReadout" class="font-mono-num text-2xl font-black text-white neon-digit-glow">00:00:00</span>
+                <span id="polarSubMs" class="font-mono-num text-xs text-sky-300">.000</span>
+              </div>
+            </div>
+
+            <!-- Clock Sub-Face C: Cyber Binary Matrix LED + Unix Epoch -->
+            <div id="clockFaceBinary" class="hidden w-full py-3.5 px-3 flex-col items-center justify-center my-0.5 glass-pill rounded-2xl">
+              <span class="text-[10px] font-black uppercase tracking-widest text-emerald-300 mb-2">BINARY MATRIX LED (BCD) & UNIX EPOCH</span>
+              <div id="binaryMatrixGrid" class="grid grid-cols-6 gap-2.5 p-3 rounded-xl bg-slate-950/80 border border-white/15"></div>
+              <div class="mt-2 flex items-center gap-4 font-mono-num text-xs">
+                <span class="text-slate-300">UNIX: <strong id="unixEpochReadout" class="text-sky-300">1794740000</strong></span>
+                <span class="text-slate-300">UTC: <strong id="utcIsoReadout" class="text-indigo-300">00:00:00</strong></span>
+              </div>
+            </div>
+
+            <!-- Precision 7-Decimal Place Year & Day Progress Dashboard -->
+            <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 mt-1.5">
+              <div class="glass-pill rounded-xl px-3 py-2 flex flex-col justify-between border border-sky-400/30">
+                <div class="flex items-center justify-between text-[10px] font-bold text-slate-300">
+                  <span>연간 진행률 (YEAR)</span>
+                  <span class="text-sky-300">7-DEC PRECISION</span>
+                </div>
+                <div id="yearProgressText" class="font-mono-num text-sm sm:text-base font-black text-white tracking-tight mt-0.5">
+                  87.2345678%
+                </div>
+                <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mt-1">
+                  <div id="yearProgressBar" class="h-full rounded-full bg-gradient-to-r from-sky-400 to-indigo-400" style="width: 87%;"></div>
+                </div>
+              </div>
+
+              <div class="glass-pill rounded-xl px-3 py-2 flex flex-col justify-between border border-emerald-400/30">
+                <div class="flex items-center justify-between text-[10px] font-bold text-slate-300">
+                  <span>일간 진행률 (TODAY)</span>
+                  <span class="text-emerald-300">REALTIME</span>
+                </div>
+                <div id="dayProgressText" class="font-mono-num text-sm sm:text-base font-black text-white tracking-tight mt-0.5">
+                  60.1234567%
+                </div>
+                <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mt-1">
+                  <div id="dayProgressBar" class="h-full rounded-full bg-gradient-to-r from-emerald-400 to-teal-300" style="width: 60%;"></div>
+                </div>
+              </div>
+
+              <div class="glass-pill rounded-xl px-3 py-2 flex flex-col justify-between border border-amber-400/30">
+                <div class="flex items-center justify-between text-[10px] font-bold text-slate-300">
+                  <span>달의 위상 (LUNAR)</span>
+                  <span class="text-amber-300">ASTRO</span>
+                </div>
+                <div id="moonPhaseBadge" class="font-mono-num text-xs sm:text-sm font-extrabold text-amber-200 mt-0.5">
+                  🌓 상현달 (48.00000%)
+                </div>
+                <div id="clockDateDisplayMobile" class="text-[10px] font-medium text-slate-300 mt-0.5 truncate">
+                  2026년 11월 15일
+                </div>
+              </div>
+            </div>
+
+            <!-- 8 Global Metropolises World Clock Quick Grid -->
+            <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 mt-2.5 pt-2.5 border-t border-white/15">
+              <button data-tz="Asia/Seoul" data-label="SEOUL (KST)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-sky-500/20 border border-sky-400 shadow-md">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-white">서울</span>
+                  <span class="text-[9px] text-sky-200 font-bold">KST</span>
+                </div>
+                <div id="wtSeoul" class="font-mono-num text-xs sm:text-sm font-extrabold text-white mt-0.5">14:34</div>
+              </button>
+
+              <button data-tz="America/New_York" data-label="NEW YORK (EST)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-slate-100">뉴욕</span>
+                  <span class="text-[9px] text-slate-300">EST</span>
+                </div>
+                <div id="wtNewYork" class="font-mono-num text-xs sm:text-sm font-bold text-white mt-0.5">00:34</div>
+              </button>
+
+              <button data-tz="Europe/London" data-label="LONDON (GMT)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-slate-100">런던</span>
+                  <span class="text-[9px] text-slate-300">GMT</span>
+                </div>
+                <div id="wtLondon" class="font-mono-num text-xs sm:text-sm font-bold text-white mt-0.5">05:34</div>
+              </button>
+
+              <button data-tz="Asia/Tokyo" data-label="TOKYO (JST)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-slate-100">도쿄</span>
+                  <span class="text-[9px] text-slate-300">JST</span>
+                </div>
+                <div id="wtTokyo" class="font-mono-num text-xs sm:text-sm font-bold text-white mt-0.5">14:34</div>
+              </button>
+
+              <button data-tz="Europe/Paris" data-label="PARIS (CET)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-slate-100">🇫🇷 파리</span>
+                  <span class="text-[9px] text-slate-300">CET</span>
+                </div>
+                <div id="wtParis" class="font-mono-num text-xs sm:text-sm font-bold text-white mt-0.5">06:34</div>
+              </button>
+
+              <button data-tz="Asia/Dubai" data-label="DUBAI (GST)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-slate-100">🇦🇪 두바이</span>
+                  <span class="text-[9px] text-slate-300">GST</span>
+                </div>
+                <div id="wtDubai" class="font-mono-num text-xs sm:text-sm font-bold text-white mt-0.5">09:34</div>
+              </button>
+
+              <button data-tz="Australia/Sydney" data-label="SYDNEY (AEDT)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-slate-100">🇦🇺 시드니</span>
+                  <span class="text-[9px] text-slate-300">AEDT</span>
+                </div>
+                <div id="wtSydney" class="font-mono-num text-xs sm:text-sm font-bold text-white mt-0.5">16:34</div>
+              </button>
+
+              <button data-tz="America/Los_Angeles" data-label="LA (PST)" class="tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold text-slate-100">🇺🇸 LA</span>
+                  <span class="text-[9px] text-slate-300">PST</span>
+                </div>
+                <div id="wtLA" class="font-mono-num text-xs sm:text-sm font-bold text-white mt-0.5">21:34</div>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= VIEW 1: STOPWATCH (Analytics + CSV Export + Telemetry) ======================= -->
+        <section id="viewStopwatch" class="view-slide inactive-right flex flex-col items-center justify-between gap-3">
+          <div id="tiltCard1" class="tilt-card glass-panel w-full rounded-3xl p-4 sm:p-5 flex flex-col items-center relative overflow-hidden">
+            
+            <div class="w-full flex items-center justify-between mb-1">
+              <div class="flex items-center gap-2">
+                <span id="swStatusDot" class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
+                <span id="swStatusText" class="text-xs font-extrabold text-slate-200 uppercase tracking-wider">READY</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button id="swCopyCsvBtn" class="ripple-btn glass-pill px-2.5 py-0.5 rounded-full text-[11px] font-bold text-emerald-300 hover:bg-emerald-500/20 transition">
+                  📋 기록 복사(CSV)
+                </button>
+                <span id="swLapCounterBadge" class="glass-pill px-3 py-0.5 rounded-full text-[11px] font-mono-num font-bold text-sky-300">
+                  LAPS: 0
+                </span>
+              </div>
+            </div>
+
+            <div class="tablet-dial-scale relative w-44 h-44 sm:w-52 sm:h-52 flex items-center justify-center my-0.5">
+              <div id="swGlowHalo" class="absolute inset-2 rounded-full opacity-0 transition-opacity duration-500 pointer-events-none"
+                   style="background: radial-gradient(circle, var(--accent-glow) 0%, var(--accent-glow-2) 50%, transparent 72%); "></div>
+
+              <canvas id="swFxCanvas" width="220" height="220" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+              <svg class="w-full h-full -rotate-90 overflow-visible relative z-10" viewBox="0 0 220 220">
+                <circle id="swGyroOuter" cx="110" cy="110" r="105" fill="none" stroke="var(--accent-2)" stroke-width="1.5"
+                        stroke-dasharray="10 14 28 14" class="gyro-ring-ccw opacity-45" />
+                <circle cx="110" cy="110" r="96" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="8" />
+                <circle id="swLapArc" cx="110" cy="110" r="82" fill="none" stroke="var(--accent-3)" stroke-width="3.5"
+                        stroke-dasharray="515.2" stroke-dashoffset="515.2" stroke-linecap="round" />
+                <circle id="swMainArc" cx="110" cy="110" r="96" fill="none" stroke="url(#clockGrad)" stroke-width="8"
+                        stroke-dasharray="603.2" stroke-dashoffset="603.2" stroke-linecap="round" />
+              </svg>
+
+              <div class="absolute inset-0 flex flex-col items-center justify-center z-20 pointer-events-none">
+                <span class="text-[10px] font-bold uppercase tracking-widest text-sky-300 mb-0.5">PRECISION CHRONO</span>
+                <div class="font-mono-num flex items-baseline tracking-tight neon-digit-glow">
+                  <span id="swMinSec" class="text-3xl sm:text-4xl font-black text-white">00:00</span>
+                  <span id="swMillis" class="text-lg sm:text-xl font-extrabold text-sky-300 ml-0.5">.00</span>
+                </div>
+                <div id="swCurrentLapReadout" class="font-mono-num text-xs font-bold text-indigo-200 mt-0.5">
+                  LAP 00:00.00
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Analytics Telemetry Row -->
+            <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2 my-1">
+              <div class="glass-pill rounded-xl p-1.5 text-center">
+                <div class="text-[10px] text-slate-300 font-bold">평균 랩</div>
+                <div id="swStatAvg" class="font-mono-num text-xs font-extrabold text-white mt-0.5">00:00.00</div>
+              </div>
+              <div class="glass-pill rounded-xl p-1.5 text-center">
+                <div class="text-[10px] text-emerald-300 font-bold">최고 기록</div>
+                <div id="swStatBest" class="font-mono-num text-xs font-extrabold text-emerald-300 mt-0.5">00:00.00</div>
+              </div>
+              <div class="glass-pill rounded-xl p-1.5 text-center">
+                <div class="text-[10px] text-sky-300 font-bold">일관성 편차</div>
+                <div id="swStatStd" class="font-mono-num text-xs font-extrabold text-sky-300 mt-0.5">±0.00s</div>
+              </div>
+              <div class="glass-pill rounded-xl p-1.5 text-center">
+                <div class="text-[10px] text-indigo-300 font-bold">분당 페이스</div>
+                <div id="swStatLpm" class="font-mono-num text-xs font-extrabold text-indigo-200 mt-0.5">0.0 LPM</div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-4 w-full my-1.5">
+              <button id="swLapResetBtn" disabled class="ripple-btn glass-pill w-28 py-2.5 rounded-2xl text-xs font-extrabold uppercase tracking-wider text-slate-100 hover:text-white hover:bg-slate-800/80 disabled:opacity-40 disabled:pointer-events-none transition">
+                초기화
+              </button>
+
+              <button id="swStartStopBtn" class="ripple-btn btn-primary-glow w-40 py-3 rounded-2xl text-sm font-black uppercase tracking-wider text-white flex items-center justify-center gap-2">
+                <span id="swStartStopLabel">시작</span>
+              </button>
+            </div>
+
+            <div class="w-full mt-1 pt-2 border-t border-white/15">
+              <div id="swLapsContainer" class="max-h-28 overflow-y-auto space-y-1.5 pr-1">
+                <div id="swEmptyState" class="text-center py-3 text-xs text-slate-300">
+                  스톱워치를 시작하고 <strong>랩 기록</strong>을 누르면 실시간 구간 속도와 표준편차 통계가 표시됩니다.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ======================= VIEW 2: TIMER (Plasma Wave + Multi-Timer Parallel Queue) ======================= -->
+        <section id="viewTimer" class="view-slide inactive-right flex flex-col items-center justify-between gap-3">
+          <div id="timerCardPanel" class="tilt-card glass-panel w-full rounded-3xl p-4 sm:p-5 flex flex-col items-center relative overflow-hidden transition-all">
+            
+            <div class="w-full flex flex-wrap items-center justify-between gap-1.5 mb-1">
+              <div class="flex items-center gap-1.5">
+                <span id="timerStatusDot" class="w-2.5 h-2.5 rounded-full bg-sky-400"></span>
+                <span id="timerStatusText" class="text-xs font-extrabold text-white uppercase tracking-wider">LIQUID TIMER</span>
+              </div>
+              <div class="flex items-center gap-1 flex-wrap">
+                <button data-preset="10" class="timer-preset-btn ripple-btn glass-pill px-2 py-1 rounded-lg text-[10px] font-bold text-rose-200 hover:text-white hover:border-rose-400/60 transition">10초 폭죽테스트</button>
+                <button data-preset="60" class="timer-preset-btn ripple-btn glass-pill px-2 py-1 rounded-lg text-[10px] font-bold text-slate-100 hover:text-white transition">+1분</button>
+                <button data-preset="180" class="timer-preset-btn ripple-btn glass-pill px-2 py-1 rounded-lg text-[10px] font-bold text-slate-100 hover:text-white transition">3분</button>
+                <button data-preset="300" class="timer-preset-btn ripple-btn glass-pill px-2 py-1 rounded-lg text-[10px] font-bold text-slate-100 hover:text-white transition">5분</button>
+                <button data-preset="600" class="timer-preset-btn ripple-btn glass-pill px-2 py-1 rounded-lg text-[10px] font-bold text-slate-100 hover:text-white transition">10분</button>
+                <button data-preset="1500" class="timer-preset-btn ripple-btn glass-pill px-2 py-1 rounded-lg text-[10px] font-bold text-sky-300 hover:text-white transition">25분 집중</button>
+              </div>
+            </div>
+
+            <div class="tablet-dial-scale relative w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center my-0.5">
+              <canvas id="timerWaveCanvas" width="180" height="180" class="rounded-full overflow-hidden opacity-90 shadow-inner"></canvas>
+
+              <svg class="absolute inset-0 w-full h-full -rotate-90 overflow-visible pointer-events-none" viewBox="0 0 220 220">
+                <circle cx="110" cy="110" r="106" fill="none" stroke="var(--accent-1)" stroke-width="1.3"
+                        stroke-dasharray="10 14 26 14" class="gyro-ring-cw opacity-45" />
+                <circle cx="110" cy="110" r="98" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="7.5" />
+                <circle id="timerProgressArc" cx="110" cy="110" r="98" fill="none" stroke="url(#clockGrad)" stroke-width="7.5"
+                        stroke-dasharray="615.75" stroke-dashoffset="0" stroke-linecap="round" />
+              </svg>
+
+              <div class="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+                <span id="timerEndTimePreview" class="text-[10px] font-bold text-white mb-0.5 flex items-center gap-1 drop-shadow">
+                  🔔 완료 예정 <span id="timerTargetClock" class="text-sky-200">--:--</span>
+                </span>
+                <div id="timerReadout" class="font-mono-num text-3xl sm:text-4xl font-black text-white tracking-tight neon-digit-glow">
+                  05:00
+                </div>
+                <span id="timerPercentText" class="font-mono-num text-xs font-extrabold text-sky-200 mt-0.5">100%</span>
+              </div>
+            </div>
+
+            <div id="timerStepperRow" class="grid grid-cols-3 gap-2 w-full max-w-xs my-1">
+              <div class="glass-pill rounded-xl p-1 flex flex-col items-center">
+                <span class="text-[10px] text-slate-300 font-bold">시간 (H)</span>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <button data-adj-sec="-3600" class="timer-adj-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white">-</button>
+                  <span id="timerInputH" class="font-mono-num text-sm font-extrabold w-6 text-center text-white">00</span>
+                  <button data-adj-sec="3600" class="timer-adj-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white">+</button>
+                </div>
+              </div>
+
+              <div class="glass-pill rounded-xl p-1 flex flex-col items-center">
+                <span class="text-[10px] text-slate-300 font-bold">분 (M)</span>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <button data-adj-sec="-60" class="timer-adj-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white">-</button>
+                  <span id="timerInputM" class="font-mono-num text-sm font-extrabold w-6 text-center text-white">05</span>
+                  <button data-adj-sec="60" class="timer-adj-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white">+</button>
+                </div>
+              </div>
+
+              <div class="glass-pill rounded-xl p-1 flex flex-col items-center">
+                <span class="text-[10px] text-slate-300 font-bold">초 (S)</span>
+                <div class="flex items-center gap-2 mt-0.5">
+                  <button data-adj-sec="-10" class="timer-adj-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white">-</button>
+                  <span id="timerInputS" class="font-mono-num text-sm font-extrabold w-6 text-center text-white">00</span>
+                  <button data-adj-sec="10" class="timer-adj-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-bold text-white">+</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-3 w-full mt-1">
+              <button id="timerResetBtn" class="ripple-btn glass-pill w-24 py-2.5 rounded-2xl text-xs font-extrabold uppercase tracking-wider text-slate-100 hover:text-white transition">
+                초기화
+              </button>
+
+              <button id="timerStartPauseBtn" class="ripple-btn btn-primary-glow w-36 py-2.5 rounded-2xl text-sm font-black uppercase tracking-wider text-white flex items-center justify-center gap-2">
+                <span id="timerStartPauseLabel">시작</span>
+              </button>
+            </div>
+
+            <!-- Parallel Multi-Timer Sub-Queue -->
+            <div class="w-full mt-2 pt-2 border-t border-white/15">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[11px] font-bold text-slate-200">⚡ 동시 실행 멀티 타이머 슬롯</span>
+                <div class="flex gap-1">
+                  <button data-add-multi="180" data-multi-name="컵라면 3분" class="multi-add-btn glass-pill px-2 py-0.5 rounded text-[10px] font-bold text-sky-300 hover:bg-sky-500/20">+라면 3m</button>
+                  <button data-add-multi="420" data-multi-name="반숙란 7분" class="multi-add-btn glass-pill px-2 py-0.5 rounded text-[10px] font-bold text-amber-300 hover:bg-amber-500/20">+계란 7m</button>
+                  <button data-add-multi="1200" data-multi-name="파워냅 20분" class="multi-add-btn glass-pill px-2 py-0.5 rounded text-[10px] font-bold text-indigo-300 hover:bg-indigo-500/20">+낮잠 20m</button>
+                </div>
+              </div>
+              <div id="multiTimerList" class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2"></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ======================= VIEW 3: SMART ALARMS (Reliable Stepper + Countdown + Quick +1m + Math/Normal) ======================= -->
+        <section id="viewAlarm" class="view-slide inactive-right flex flex-col items-center justify-between gap-3">
+          <div class="tilt-card glass-panel w-full rounded-3xl p-4 sm:p-5 flex flex-col items-center relative overflow-hidden">
+            <div class="w-full flex flex-wrap items-center justify-between gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-base">⏰</span>
+                <span class="text-xs font-black uppercase tracking-wider text-white">스마트 알람 스테이션</span>
+                <span id="alarmCurrentClockBadge" class="px-2 py-0.5 rounded-md bg-sky-500/20 border border-sky-400/40 font-mono-num text-[11px] font-bold text-sky-200">현재 00:00:00</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button id="add1MinAlarmBtn" class="ripple-btn glass-pill px-2.5 py-1 rounded-lg text-[11px] font-bold text-emerald-300 border border-emerald-400/50 hover:bg-emerald-500/20 transition">
+                  ⚡ +1분 뒤 알람 등록
+                </button>
+                <button id="testMathAlarmBtn" class="ripple-btn glass-pill px-2.5 py-1 rounded-lg text-[11px] font-bold text-rose-200 border border-rose-400/50 hover:bg-rose-500/20 transition">
+                  🚨 미션 알람 즉시 체험
+                </button>
+              </div>
+            </div>
+
+            <!-- Reliable Custom Hour/Minute Selector Bar (No finicky browser native time popup) -->
+            <div class="w-full glass-pill rounded-2xl p-3 mb-2.5 flex flex-col sm:flex-row items-center justify-between gap-2.5">
+              <div class="flex items-center gap-2">
+                <!-- Hour Selector -->
+                <div class="flex items-center gap-1 bg-slate-950/90 border border-white/15 rounded-xl px-2 py-1">
+                  <button id="alarmHMinus" type="button" class="w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">-</button>
+                  <input id="newAlarmHour" type="number" min="0" max="23" value="07" class="w-10 bg-transparent text-center font-mono-num text-base font-black text-sky-300 focus:outline-none">
+                  <button id="alarmHPlus" type="button" class="w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">+</button>
+                </div>
+                <span class="font-mono-num text-base font-black text-white">:</span>
+                <!-- Minute Selector -->
+                <div class="flex items-center gap-1 bg-slate-950/90 border border-white/15 rounded-xl px-2 py-1">
+                  <button id="alarmMMinus" type="button" class="w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">-</button>
+                  <input id="newAlarmMin" type="number" min="0" max="59" value="30" class="w-10 bg-transparent text-center font-mono-num text-base font-black text-sky-300 focus:outline-none">
+                  <button id="alarmMPlus" type="button" class="w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">+</button>
+                </div>
+                <!-- Hidden compatibility input -->
+                <input id="newAlarmTime" type="hidden" value="07:30">
+              </div>
+
+              <div class="flex flex-wrap items-center justify-center gap-2 flex-1">
+                <input id="newAlarmLabel" type="text" placeholder="알람 이름 입력" value="모닝 브리핑 & 기상" class="bg-slate-950/90 border border-white/15 rounded-xl px-3 py-1.5 text-xs font-semibold text-white flex-1 min-w-[120px] focus:outline-none focus:border-sky-400">
+                <label class="flex items-center gap-1.5 text-[11px] font-bold text-amber-200 cursor-pointer px-2 py-1 rounded-lg bg-white/5">
+                  <input id="newAlarmMathCheck" type="checkbox" checked class="accent-sky-400 w-3.5 h-3.5">
+                  <span>암산 잠금</span>
+                </label>
+                <button id="addAlarmBtn" class="ripple-btn btn-primary-glow px-4 py-2 rounded-xl text-xs font-black text-white">
+                  + 알람 추가
+                </button>
+              </div>
+            </div>
+
+            <!-- Alarms List with Live Remaining Countdown & Test Bell -->
+            <div id="alarmsListContainer" class="w-full space-y-2 max-h-56 overflow-y-auto pr-1"></div>
+          </div>
+        </section>
+
+        <!-- ======================= VIEW 4: POMODORO (Custom Focus/Short/Long Duration Settings) & SOUND MIXER ======================= -->
+        <section id="viewPomodoro" class="view-slide inactive-right flex flex-col items-center justify-between gap-3">
+          <div class="tilt-card glass-panel w-full rounded-3xl p-4 sm:p-5 flex flex-col items-center relative overflow-hidden">
+            <div class="w-full flex items-center justify-between mb-2">
+              <div class="flex items-center gap-2">
+                <span class="text-base">🧠</span>
+                <span class="text-xs font-black uppercase tracking-wider text-white">커스텀 포모도로 스튜디오 & 사운드 믹서</span>
+              </div>
+              <span id="pomoSessionCount" class="glass-pill px-2.5 py-0.5 rounded-full text-[11px] font-mono-num font-bold text-emerald-300">
+                완료 세션: 0 🔥
+              </span>
+            </div>
+
+            <!-- Phase Switcher Pills -->
+            <div class="grid grid-cols-3 gap-2 w-full mb-2">
+              <button id="pomoTabFocus" data-pomo-mode="focus" data-pomo-sec="1500" class="pomo-mode-btn ripple-btn py-2 rounded-xl text-xs font-black bg-sky-500/25 border border-sky-400 text-white">
+                집중 (<span id="pomoTabFocusMin">25</span>분)
+              </button>
+              <button id="pomoTabShort" data-pomo-mode="short" data-pomo-sec="300" class="pomo-mode-btn ripple-btn py-2 rounded-xl text-xs font-bold glass-pill text-slate-200">
+                짧은 휴식 (<span id="pomoTabShortMin">5</span>분)
+              </button>
+              <button id="pomoTabLong" data-pomo-mode="long" data-pomo-sec="900" class="pomo-mode-btn ripple-btn py-2 rounded-xl text-xs font-bold glass-pill text-slate-200">
+                긴 휴식 (<span id="pomoTabLongMin">15</span>분)
+              </button>
+            </div>
+
+            <!-- User-Customizable Focus / Short Break / Long Break Duration Controls -->
+            <div class="w-full glass-pill rounded-2xl p-2 sm:p-2.5 mb-2 grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2">
+              <div class="flex flex-col items-center bg-slate-950/60 rounded-xl p-1.5 border border-white/10">
+                <span class="text-[10px] font-bold text-sky-300">집중 시간(분)</span>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <button type="button" data-pomo-adj="focus" data-delta="-5" class="pomo-custom-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">-5</button>
+                  <input id="pomoInputFocus" type="number" min="1" max="180" value="25" class="w-11 bg-slate-900 border border-white/15 rounded-lg py-0.5 text-center font-mono-num text-xs font-black text-white">
+                  <button type="button" data-pomo-adj="focus" data-delta="5" class="pomo-custom-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">+5</button>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center bg-slate-950/60 rounded-xl p-1.5 border border-white/10">
+                <span class="text-[10px] font-bold text-emerald-300">짧은 휴식(분)</span>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <button type="button" data-pomo-adj="short" data-delta="-1" class="pomo-custom-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">-1</button>
+                  <input id="pomoInputShort" type="number" min="1" max="60" value="5" class="w-11 bg-slate-900 border border-white/15 rounded-lg py-0.5 text-center font-mono-num text-xs font-black text-white">
+                  <button type="button" data-pomo-adj="short" data-delta="1" class="pomo-custom-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">+1</button>
+                </div>
+              </div>
+
+              <div class="flex flex-col items-center bg-slate-950/60 rounded-xl p-1.5 border border-white/10">
+                <span class="text-[10px] font-bold text-indigo-300">긴 휴식(분)</span>
+                <div class="flex items-center gap-1.5 mt-1">
+                  <button type="button" data-pomo-adj="long" data-delta="-5" class="pomo-custom-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">-5</button>
+                  <input id="pomoInputLong" type="number" min="1" max="90" value="15" class="w-11 bg-slate-900 border border-white/15 rounded-lg py-0.5 text-center font-mono-num text-xs font-black text-white">
+                  <button type="button" data-pomo-adj="long" data-delta="5" class="pomo-custom-btn w-6 h-6 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-black text-white">+5</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pomodoro Readout & Controls -->
+            <div class="w-full glass-pill rounded-2xl p-3.5 my-0.5 flex items-center justify-between">
+              <div>
+                <span id="pomoModeTitle" class="text-[10px] font-black uppercase tracking-widest text-sky-300">DEEP WORK FOCUS</span>
+                <div id="pomoReadout" class="font-mono-num text-3xl sm:text-4xl font-black text-white neon-digit-glow mt-0.5">25:00</div>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="pomoResetBtn" class="ripple-btn glass-pill px-3.5 py-2.5 rounded-xl text-xs font-bold text-slate-100 hover:text-white">
+                  리셋
+                </button>
+                <button id="pomoStartBtn" class="ripple-btn btn-primary-glow px-5 py-2.5 rounded-xl text-xs font-black text-white uppercase">
+                  집중 시작
+                </button>
+              </div>
+            </div>
+
+            <!-- Web Audio Ambient Soundscape Synthesizer Mixer -->
+            <div class="w-full mt-2 pt-2 border-t border-white/15">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[11px] font-extrabold text-slate-100">🎧 실시간 합성 백색소음 & 바이노럴 뇌파 믹서</span>
+                <span id="ambientStatusBadge" class="text-[10px] font-bold text-slate-300">모두 꺼짐</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-1.5 sm:gap-2">
+                <button data-ambient="rain" class="ambient-btn ripple-btn glass-pill rounded-2xl p-2 flex flex-col items-center gap-0.5 hover:border-sky-400/50 transition">
+                  <span class="text-base">🌧️</span>
+                  <span class="text-xs font-bold text-white">사이버 빗소리</span>
+                  <span class="text-[10px] text-slate-300">핑크 노이즈 합성</span>
+                </button>
+                <button data-ambient="space" class="ambient-btn ripple-btn glass-pill rounded-2xl p-2 flex flex-col items-center gap-0.5 hover:border-indigo-400/50 transition">
+                  <span class="text-base">🛸</span>
+                  <span class="text-xs font-bold text-white">딥 스페이스 드론</span>
+                  <span class="text-[10px] text-slate-300">저주파 우주 공명</span>
+                </button>
+                <button data-ambient="alpha" class="ambient-btn ripple-btn glass-pill rounded-2xl p-2 flex flex-col items-center gap-0.5 hover:border-emerald-400/50 transition">
+                  <span class="text-base">⚡</span>
+                  <span class="text-xs font-bold text-white">40Hz 감마 집중파</span>
+                  <span class="text-[10px] text-slate-300">바이노럴 비트</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================= VIEW 5: PRO METRONOME & 4-7-8 BREATHING GUIDE ======================= -->
+        <section id="viewTools" class="view-slide inactive-right flex flex-col items-center justify-between gap-3">
+          <div class="tilt-card glass-panel w-full rounded-3xl p-4 sm:p-5 flex flex-col items-center relative overflow-hidden">
+            
+            <div class="w-full pb-3 border-b border-white/15">
+              <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">🎵</span>
+                  <span class="text-xs font-black uppercase tracking-wider text-white">스튜디오 우드블록 메트로놈 & 탭 템포</span>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button id="metroTapBtn" class="ripple-btn glass-pill px-2.5 py-1 rounded-lg text-[11px] font-bold text-amber-200 border border-amber-400/40">
+                    👆 탭 템포 (TAP)
+                  </button>
+                  <button id="metroToggleBtn" class="ripple-btn btn-primary-glow px-3.5 py-1 rounded-lg text-xs font-black text-white">
+                    재생
+                  </button>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between gap-4 my-2">
+                <div class="flex items-baseline gap-1 font-mono-num">
+                  <span id="metroBpmReadout" class="text-3xl font-black text-white neon-digit-glow">120</span>
+                  <span class="text-xs font-bold text-sky-300">BPM</span>
+                </div>
+                <input id="metroBpmSlider" type="range" min="40" max="220" value="120" class="flex-1 accent-sky-400 cursor-pointer">
+                <div class="flex gap-1.5" id="metroBeatDots">
+                  <span class="w-3.5 h-3.5 rounded-full bg-white/20 transition-all"></span>
+                  <span class="w-3.5 h-3.5 rounded-full bg-white/20 transition-all"></span>
+                  <span class="w-3.5 h-3.5 rounded-full bg-white/20 transition-all"></span>
+                  <span class="w-3.5 h-3.5 rounded-full bg-white/20 transition-all"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full pt-3 flex flex-col items-center">
+              <div class="w-full flex items-center justify-between mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">🧘</span>
+                  <span class="text-xs font-black uppercase tracking-wider text-white">4-7-8 홀로그램 명상 호흡 가이드</span>
+                </div>
+                <button id="breathToggleBtn" class="ripple-btn glass-pill px-3 py-1 rounded-lg text-xs font-extrabold text-sky-300 border border-sky-400/50">
+                  호흡 가이드 시작
+                </button>
+              </div>
+
+              <div class="relative w-32 h-32 flex items-center justify-center my-1">
+                <div id="breathOrb" class="breath-orb w-16 h-16 rounded-full flex items-center justify-center"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                  <span id="breathPhaseText" class="text-xs font-black text-white drop-shadow">대기 중</span>
+                  <span id="breathSecText" class="font-mono-num text-lg font-black text-sky-200">4-7-8</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-300 text-center">
+                4초 들숨 → 7초 멈춤 → 8초 날숨 리듬에 맞춰 홀로그램 구체가 부드럽게 팽창·수축합니다.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Bottom 6-Tab Morphing Navigation Dock -->
+  <nav class="relative z-20 w-full max-w-2xl mx-auto px-2.5 sm:px-5 pb-2.5 sm:pb-4 pt-1" aria-label="화면 전환 메뉴">
+    <div class="glass-panel rounded-2xl p-1 relative grid grid-cols-6 items-center">
+      <div id="navActivePill" class="nav-indicator absolute top-1 bottom-1 left-1 w-[calc(16.666667%-1.3px)] rounded-xl pointer-events-none"></div>
+
+      <button id="navBtn0" data-target-view="0" class="nav-tab-btn relative z-10 py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] sm:text-xs font-extrabold text-white transition-colors">
+        <span>🕐</span>
+        <span>시계</span>
+      </button>
+
+      <button id="navBtn1" data-target-view="1" class="nav-tab-btn relative z-10 py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] sm:text-xs font-extrabold text-slate-300 hover:text-white transition-colors">
+        <div class="relative">
+          <span>⏱️</span>
+          <span id="navBadgeSw" class="hidden absolute -top-1 -right-2 w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        </div>
+        <span>스톱워치</span>
+      </button>
+
+      <button id="navBtn2" data-target-view="2" class="nav-tab-btn relative z-10 py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] sm:text-xs font-extrabold text-slate-300 hover:text-white transition-colors">
+        <div class="relative">
+          <span>⏳</span>
+          <span id="navBadgeTimer" class="hidden absolute -top-1 -right-2 w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+        </div>
+        <span>타이머</span>
+      </button>
+
+      <button id="navBtn3" data-target-view="3" class="nav-tab-btn relative z-10 py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] sm:text-xs font-extrabold text-slate-300 hover:text-white transition-colors">
+        <span>⏰</span>
+        <span>알람</span>
+      </button>
+
+      <button id="navBtn4" data-target-view="4" class="nav-tab-btn relative z-10 py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] sm:text-xs font-extrabold text-slate-300 hover:text-white transition-colors">
+        <span>🧠</span>
+        <span>포모도로</span>
+      </button>
+
+      <button id="navBtn5" data-target-view="5" class="nav-tab-btn relative z-10 py-2 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] sm:text-xs font-extrabold text-slate-300 hover:text-white transition-colors">
+        <span>🎵</span>
+        <span>박자·호흡</span>
+      </button>
+    </div>
+
+    <div class="text-center mt-1.5 flex flex-wrap items-center justify-center gap-2 text-[10px] text-slate-300">
+      <span>단축키 <kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-white font-bold">1</kbd>~<kbd class="px-1.5 py-0.5 rounded bg-slate-800 text-white font-bold">6</kbd> 탭 전환</span>
+      <span>•</span>
+      <span>터치·클릭 시 <strong class="text-sky-300">실크 오로라 파동</strong></span>
+      <span>•</span>
+      <span>좌우 스와이프 3D 전환</span>
+    </div>
+  </nav>
+
+  <!-- Unified Alarm Modal (Supports Both Math Lock & Instant Dismiss / Snooze) -->
+  <div id="mathAlarmModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/85 backdrop-blur-xl">
+    <div class="glass-panel alarm-firing max-w-sm w-full rounded-3xl p-6 text-center border-2 border-rose-400">
+      <div class="text-3xl mb-1 animate-bounce">🔔⏰🔔</div>
+      <h2 id="mathAlarmTitle" class="text-lg font-black text-white">알람이 울립니다!</h2>
+      <p id="mathAlarmSubtitle" class="text-xs text-rose-200 mt-1">알람을 해제하려면 아래 미션을 완료하거나 버튼을 눌러주세요.</p>
+
+      <!-- Math Problem Container -->
+      <div id="mathChallengeSection">
+        <div id="mathProblemBox" class="my-3.5 py-3 px-4 rounded-2xl bg-slate-950/90 font-mono-num text-2xl font-black text-sky-300 border border-white/15">
+          24 + 17 = ?
+        </div>
+        <div class="flex gap-2">
+          <input id="mathAnswerInput" type="number" placeholder="정답 입력" class="flex-1 bg-slate-900 border border-white/25 rounded-xl px-3 py-2.5 text-center font-mono-num text-base font-black text-white focus:outline-none focus:border-sky-400">
+          <button id="mathSubmitBtn" class="btn-primary-glow px-5 py-2.5 rounded-xl text-xs font-black text-white">
+            해제
+          </button>
+        </div>
+        <p id="mathFeedbackText" class="text-[11px] text-amber-300 mt-1.5 h-4"></p>
+      </div>
+
+      <!-- Direct Snooze / Dismiss Actions -->
+      <div class="flex items-center justify-center gap-2 mt-3 pt-3 border-t border-white/15">
+        <button id="snoozeAlarmModalBtn" class="ripple-btn glass-pill flex-1 py-2.5 rounded-xl text-xs font-bold text-amber-200 hover:bg-amber-500/20">
+          💤 5분 뒤 다시 알림
+        </button>
+        <button id="forceDismissAlarmModalBtn" class="ripple-btn bg-rose-500/30 hover:bg-rose-500/50 border border-rose-400/50 flex-1 py-2.5 rounded-xl text-xs font-black text-white">
+          알람 바로 끄기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile App / APK Guide Modal -->
+  <div id="apkModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+    <div class="glass-panel max-w-md w-full rounded-3xl p-6 border border-white/20 shadow-2xl transform transition-all">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl btn-primary-glow flex items-center justify-center">
+            <span>📱</span>
+          </div>
+          <h2 class="text-base font-bold text-white">스마트폰 앱 설치 & APK 변환 안내</h2>
+        </div>
+        <button id="closeApkModalBtn" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300">
+          ✕
+        </button>
+      </div>
+      <div class="space-y-3 text-xs text-slate-200 leading-relaxed">
+        <p>
+          이 단일 HTML 웹 앱은 우아한 실크 오로라 엔진과 6가지 타임 스위트가 내장되어 스마트폰에서 전체화면 네이티브 앱처럼 구동됩니다.
+        </p>
+        <div class="glass-pill rounded-2xl p-3.5 space-y-1.5">
+          <div class="font-bold text-sky-300">📱 Android / iOS 홈 화면에 바로 설치</div>
+          <p class="text-slate-200">브라우저 메뉴에서 <strong>[홈 화면에 추가]</strong>를 선택하면 상하단 주소창이 제거된 순수 전체화면 앱으로 작동합니다.</p>
+        </div>
+        <div class="glass-pill rounded-2xl p-3.5 space-y-1.5">
+          <div class="font-bold text-indigo-300">📦 설치용 .APK 파일로 변환하기</div>
+          <p class="text-slate-200">이 HTML 파일을 저장한 뒤 무료 변환기(WebIntoApp 등)에 업로드하면 1분 만에 설치 가능한 안드로이드 APK가 생성됩니다.</p>
+        </div>
+      </div>
+      <button id="confirmApkModalBtn" class="mt-5 w-full py-3 rounded-2xl btn-primary-glow text-xs font-extrabold text-white uppercase tracking-wider">
+        확인
+      </button>
+    </div>
+  </div>
+
+  <!-- Toast Banner for Timer / Notification -->
+  <div id="alarmBanner" class="fixed top-16 left-1/2 -translate-x-1/2 z-40 hidden items-center gap-3 px-5 py-3 rounded-2xl bg-rose-600/95 backdrop-blur-md text-white shadow-2xl border border-rose-300/60">
+    <span class="text-xl animate-bounce">🔔</span>
+    <div id="alarmBannerText" class="text-xs font-black tracking-wide">
+      타이머가 완료되었습니다!
+    </div>
+    <button id="dismissAlarmBtn" class="ml-2 px-3 py-1 rounded-xl bg-white text-rose-600 text-xs font-black hover:bg-rose-50 transition">
+      알람 끄기
+    </button>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. MASTER STATE & 6-IN-1 CONFIGURATION
+    // =========================================================================
+    const state = {
+      activeView: 0,
+      theme: 'aurora',
+      soundEnabled: true,
+      bgModeIndex: 0, // 0: SILK AURORA, 1: DEEP COSMOS, 2: SACRED GEOMETRY, 3: MINIMAL DARK
+      warpBoost: 0,
+      clock: {
+        use24h: true,
+        tickSound: false,
+        faceMode: 0, // 0: Analog Gyro, 1: Polar Concentric, 2: Binary Matrix LED
+        selectedTz: 'Asia/Seoul',
+        selectedLabel: 'SEOUL (KST)',
+        lastSecond: -1
+      },
+      stopwatch: {
+        running: false,
+        startTime: 0,
+        elapsed: 0,
+        laps: []
+      },
+      timer: {
+        running: false,
+        alarming: false,
+        totalMs: 300 * 1000,
+        remainMs: 300 * 1000,
+        endTime: 0,
+        alarmInterval: null,
+        bubbles: [],
+        multiTimers: [
+          { id: 1, name: '스트레칭 2분', totalSec: 120, remainSec: 120, running: false },
+          { id: 2, name: '홍차 우리기 3분', totalSec: 180, remainSec: 180, running: false },
+          { id: 3, name: '눈 휴식 1분', totalSec: 60, remainSec: 60, running: false }
+        ]
+      },
+      alarms: [
+        { id: 101, time: '07:00', label: '모닝 기상 & 스트레칭', enabled: true, mathLock: true, lastTriggeredMinute: '' },
+        { id: 102, time: '12:30', label: '점심 리프레시 알람', enabled: true, mathLock: false, lastTriggeredMinute: '' },
+        { id: 103, time: '22:00', label: '디지털 디톡스 & 독서', enabled: false, mathLock: true, lastTriggeredMinute: '' }
+      ],
+      mathChallenge: {
+        active: false,
+        answer: 0,
+        alarmInterval: null
+      },
+      pomodoro: {
+        mode: 'focus', // 'focus' | 'short' | 'long'
+        running: false,
+        customMinutes: {
+          focus: 25,
+          short: 5,
+          long: 15
+        },
+        totalSec: 1500,
+        remainSec: 1500,
+        completedSessions: 0,
+        activeAmbient: null
+      },
+      metronome: {
+        running: false,
+        bpm: 120,
+        beatIndex: 0,
+        nextNoteTime: 0,
+        tapTimes: []
+      },
+      breathing: {
+        running: false,
+        startTime: 0
+      },
+      stars: [],
+      burstParticles: [],
+      shockwaves: [],
+      trailParticles: []
+    };
+
+    const THEME_COLORS = {
+      aurora:    { c1: '#38bdf8', c2: '#818cf8', c3: '#c084fc', rgb1: '56, 189, 248',   rgb2: '129, 140, 248' },
+      solar:     { c1: '#fb923c', c2: '#f43f5e', c3: '#facc15', rgb1: '251, 146, 60',   rgb2: '244, 63, 94' },
+      emerald:   { c1: '#34d399', c2: '#38bdf8', c3: '#a3e635', rgb1: '52, 211, 153',   rgb2: '56, 189, 248' },
+      cyberpunk: { c1: '#facc15', c2: '#22d3ee', c3: '#f43f5e', rgb1: '250, 204, 21',   rgb2: '34, 211, 238' },
+      supernova: { c1: '#fb7185', c2: '#a78bfa', c3: '#2dd4bf', rgb1: '251, 113, 133',  rgb2: '167, 139, 250' }
+    };
+
+    const BG_MODES = ['SILK AURORA', 'DEEP COSMOS', 'MANDALA GLOW', 'MINIMAL DARK'];
+
+    // =========================================================================
+    // 2. REFINED HARMONIC WEB AUDIO SYNTHESIZER (Warm Rhodes/Marimba & Chimes)
+    // =========================================================================
+    let audioCtx = null;
+    let ambientNodes = null;
+
+    function ensureAudio() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Plays a warm, low-pass filtered harmonic note (like an acoustic marimba/bell)
+    function playHarmonicNote(freq, duration = 0.25, volume = 0.08, attack = 0.008) {
+      if (!state.soundEnabled) return;
+      try {
+        ensureAudio();
+        if (!audioCtx) return;
+        const now = audioCtx.currentTime;
+
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const filter = audioCtx.createBiquadFilter();
+        const gain = audioCtx.createGain();
+
+        osc1.type = 'sine';
+        osc2.type = 'triangle';
+        osc1.frequency.setValueAtTime(freq, now);
+        osc2.frequency.setValueAtTime(freq * 2, now); // Soft octave overtone
+
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(freq * 3.2, now);
+        filter.frequency.exponentialRampToValueAtTime(freq * 0.9, now + duration);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(volume, now + attack);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+
+        const subGain = audioCtx.createGain();
+        subGain.gain.value = 0.2; // Keep overtone gentle
+
+        osc1.connect(filter);
+        osc2.connect(subGain);
+        subGain.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + duration + 0.02);
+        osc2.stop(now + duration + 0.02);
+      } catch (e) {}
+    }
+
+    function playSfx(kind) {
+      if (!state.soundEnabled) return;
+      if (kind === 'swoosh') {
+        // Silky warm chord arpeggio on screen transition
+        playHarmonicNote(392.00, 0.22, 0.045, 0.015); // G4
+        setTimeout(() => playHarmonicNote(493.88, 0.25, 0.05, 0.015), 40); // B4
+        setTimeout(() => playHarmonicNote(587.33, 0.30, 0.055, 0.015), 80); // D5
+      } else if (kind === 'click') {
+        // Crisp luxury watch crown tap
+        playHarmonicNote(659.25, 0.08, 0.055, 0.004);
+      } else if (kind === 'start') {
+        // Uplifting Maj7 chord (C5 -> E5 -> G5 -> B5)
+        playHarmonicNote(523.25, 0.24, 0.06);
+        setTimeout(() => playHarmonicNote(659.25, 0.26, 0.06), 55);
+        setTimeout(() => playHarmonicNote(783.99, 0.30, 0.065), 110);
+        setTimeout(() => playHarmonicNote(987.77, 0.42, 0.07), 165);
+      } else if (kind === 'stop') {
+        // Gentle descending resolution (G5 -> E5 -> C5)
+        playHarmonicNote(783.99, 0.20, 0.06);
+        setTimeout(() => playHarmonicNote(659.25, 0.22, 0.055), 60);
+        setTimeout(() => playHarmonicNote(523.25, 0.32, 0.06), 120);
+      } else if (kind === 'lap') {
+        // Crystal harmonic double-ping
+        playHarmonicNote(880.00, 0.16, 0.06);
+        setTimeout(() => playHarmonicNote(1318.51, 0.28, 0.065), 50);
+      } else if (kind === 'shockwave') {
+        // Warm shimmer chord
+        playHarmonicNote(440.00, 0.38, 0.05, 0.02);
+        playHarmonicNote(659.25, 0.42, 0.045, 0.03);
+        playHarmonicNote(880.00, 0.48, 0.04, 0.04);
+      } else if (kind === 'tick') {
+        // Subtle mechanical watch escapement tick
+        playHarmonicNote(1200, 0.025, 0.025, 0.002);
+      } else if (kind === 'metroAccent') {
+        // Acoustic high woodblock
+        playHarmonicNote(987.77, 0.075, 0.09, 0.003);
+      } else if (kind === 'metroBeat') {
+        // Acoustic low woodblock
+        playHarmonicNote(659.25, 0.07, 0.07, 0.003);
+      } else if (kind === 'alarm') {
+        // Pleasant yet clear Celestial Marimba Chime Pattern (Fmaj9 arpeggio)
+        const notes = [587.33, 739.99, 880.00, 1174.66]; // D5, F#5, A5, D6
+        notes.forEach((n, idx) => {
+          setTimeout(() => playHarmonicNote(n, 0.45, 0.095, 0.008), idx * 130);
+        });
+      }
+    }
+
+    function stopAmbientSound() {
+      if (ambientNodes) {
+        try {
+          ambientNodes.forEach(n => {
+            if (n.stop) n.stop();
+            if (n.disconnect) n.disconnect();
+          });
+        } catch (e) {}
+        ambientNodes = null;
+      }
+      state.pomodoro.activeAmbient = null;
+      document.getElementById('ambientStatusBadge').textContent = '모두 꺼짐';
+      document.querySelectorAll('.ambient-btn').forEach(b => {
+        b.classList.remove('border-sky-400', 'bg-sky-500/20');
+      });
+    }
+
+    function toggleAmbientSound(mode) {
+      if (state.pomodoro.activeAmbient === mode) {
+        stopAmbientSound();
+        return;
+      }
+      stopAmbientSound();
+      ensureAudio();
+      if (!audioCtx) return;
+
+      state.pomodoro.activeAmbient = mode;
+      ambientNodes = [];
+
+      if (mode === 'rain') {
+        const bufferSize = audioCtx.sampleRate * 2;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+        for (let i = 0; i < bufferSize; i++) {
+          const white = Math.random() * 2 - 1;
+          b0 = 0.99886 * b0 + white * 0.0555179;
+          b1 = 0.99332 * b1 + white * 0.0750759;
+          b2 = 0.96900 * b2 + white * 0.1538520;
+          b3 = 0.86650 * b3 + white * 0.3104856;
+          b4 = 0.55000 * b4 + white * 0.5329522;
+          b5 = -0.7616 * b5 - white * 0.0168980;
+          data[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.022;
+          b6 = white * 0.115926;
+        }
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+        noise.loop = true;
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.value = 900;
+        const gain = audioCtx.createGain();
+        gain.gain.value = 0.3;
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+        noise.start();
+        ambientNodes.push(noise, filter, gain);
+        document.getElementById('ambientStatusBadge').textContent = '🌧️ 차분한 빗소리 재생 중';
+      } else if (mode === 'space') {
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc1.type = 'sine';
+        osc2.type = 'sine';
+        osc1.frequency.value = 130.81; // C3
+        osc2.frequency.value = 196.00; // G3
+        gain.gain.value = 0.045;
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc1.start();
+        osc2.start();
+        ambientNodes.push(osc1, osc2, gain);
+        document.getElementById('ambientStatusBadge').textContent = '🛸 딥 스페이스 패드 재생 중';
+      } else if (mode === 'alpha') {
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc1.type = 'sine';
+        osc2.type = 'sine';
+        osc1.frequency.value = 200;
+        osc2.frequency.value = 240;
+        gain.gain.value = 0.04;
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc1.start();
+        osc2.start();
+        ambientNodes.push(osc1, osc2, gain);
+        document.getElementById('ambientStatusBadge').textContent = '⚡ 40Hz 집중 뇌파 재생 중';
+      }
+
+      document.querySelectorAll('.ambient-btn').forEach(b => {
+        const isCurrent = b.getAttribute('data-ambient') === mode;
+        b.classList.toggle('border-sky-400', isCurrent);
+        b.classList.toggle('bg-sky-500/20', isCurrent);
+      });
+    }
+
+    function speakCurrentTime() {
+      try {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const now = new Date();
+        const h = now.getHours();
+        const m = now.getMinutes();
+        const s = now.getSeconds();
+        const msg = new SpeechSynthesisUtterance(
+          `현재 시각은 ${h}시 ${m}분 ${s}초입니다.`
+        );
+        msg.lang = 'ko-KR';
+        msg.rate = 1.02;
+        window.speechSynthesis.speak(msg);
+        spawnParticleBurst(window.innerWidth / 2, 60, 28);
+      } catch (e) {}
+    }
+
+    // =========================================================================
+    // 3. ULTRA-LIGHTWEIGHT PERFORMANCE ENGINE (No Background Canvas Overhead)
+    // =========================================================================
+    function resizeBgCanvas() {}
+
+    function initStarsAndBubbles() {
+      state.timer.bubbles = [];
+      for (let i = 0; i < 10; i++) {
+        state.timer.bubbles.push({
+          x: Math.random() * 180,
+          y: Math.random() * 180,
+          r: Math.random() * 2.5 + 1.0,
+          vy: Math.random() * 1.0 + 0.4,
+          wobble: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function spawnShockwave() {}
+    function spawnParticleBurst() {}
+    function renderBackground() {}
+
+    // =========================================================================
+    // 4. 6-VIEW HARDWARE-ACCELERATED NAVIGATION CONTROLLER
+    // =========================================================================
+    const viewsTrack = document.getElementById('viewsTrack');
+    const slideEls = [
+      document.getElementById('viewClock'),
+      document.getElementById('viewStopwatch'),
+      document.getElementById('viewTimer'),
+      document.getElementById('viewAlarm'),
+      document.getElementById('viewPomodoro'),
+      document.getElementById('viewTools')
+    ];
+    const navBtns = [
+      document.getElementById('navBtn0'),
+      document.getElementById('navBtn1'),
+      document.getElementById('navBtn2'),
+      document.getElementById('navBtn3'),
+      document.getElementById('navBtn4'),
+      document.getElementById('navBtn5')
+    ];
+    const navActivePill = document.getElementById('navActivePill');
+    const headerSubtitle = document.getElementById('headerSubtitle');
+    const SUBTITLES = [
+      '3가지 멀티 다이얼 · 소수점 7자리 진행률 · 8대 도시 월드클락',
+      '정밀 크로노그래프 · 실시간 편차 통계 분석 · CSV 내보내기',
+      '리퀴드 파동 타이머 · 동시 실행 멀티 타이머 슬롯',
+      '직관적 시간 조절 · 남은 시간 카운트다운 · 미션 알람',
+      '자유 시간 설정 포모도로 · 실시간 합성 백색소음 & 뇌파 믹서',
+      '우드블록 레이저 메트로놈 · 4-7-8 홀로그램 호흡 가이드'
+    ];
+
+    function switchView(targetIdx, withSound = true) {
+      const clamped = Math.max(0, Math.min(5, targetIdx));
+      if (clamped !== state.activeView && withSound) {
+        playSfx('swoosh');
+      }
+      state.activeView = clamped;
+
+      const offsetPercent = -(clamped * 16.666667);
+      viewsTrack.style.transform = `translate3d(${offsetPercent}%, 0, 0)`;
+
+      slideEls.forEach((el, idx) => {
+        el.classList.remove('active-slide', 'inactive-left', 'inactive-right');
+        if (idx === clamped) {
+          el.classList.add('active-slide');
+        } else if (idx < clamped) {
+          el.classList.add('inactive-left');
+        } else {
+          el.classList.add('inactive-right');
+        }
+      });
+
+      navActivePill.style.transform = `translate3d(${clamped * 100}%, 0, 0)`;
+
+      navBtns.forEach((btn, idx) => {
+        if (idx === clamped) {
+          btn.classList.remove('text-slate-300');
+          btn.classList.add('text-white');
+        } else {
+          btn.classList.remove('text-white');
+          btn.classList.add('text-slate-300');
+        }
+      });
+
+      headerSubtitle.textContent = SUBTITLES[clamped];
+    }
+
+    const swipeArea = document.getElementById('swipeArea');
+    let touchStartX = null;
+    let touchStartY = null;
+
+    swipeArea.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button') || e.target.closest('input') || e.target.closest('label')) return;
+      touchStartX = e.clientX;
+      touchStartY = e.clientY;
+    });
+
+    swipeArea.addEventListener('pointerup', (e) => {
+      if (touchStartX === null) return;
+      const dx = e.clientX - touchStartX;
+      const dy = e.clientY - touchStartY;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+        if (dx < 0 && state.activeView < 5) {
+          switchView(state.activeView + 1);
+        } else if (dx > 0 && state.activeView > 0) {
+          switchView(state.activeView - 1);
+        }
+      }
+      touchStartX = null;
+      touchStartY = null;
+    });
+
+    // =========================================================================
+    // 5. VIEW 0: MULTI-FACE CLOCK & 7-DECIMAL PLACE PROGRESS ENGINE
+    // =========================================================================
+    const polarCanvas = document.getElementById('polarClockCanvas');
+    const polarCtx = polarCanvas.getContext('2d');
+
+    function buildClockTicks() {
+      const group = document.getElementById('clockTicksGroup');
+      let svgTicks = '';
+      for (let i = 0; i < 60; i++) {
+        const angle = i * 6;
+        const isMajor = i % 5 === 0;
+        const y1 = isMajor ? 30 : 32;
+        const y2 = isMajor ? 40 : 36;
+        const stroke = isMajor ? 'rgba(255, 255, 255, 0.9)' : 'rgba(148, 163, 184, 0.4)';
+        const width = isMajor ? 2.4 : 1.2;
+        svgTicks += `<line x1="130" y1="${y1}" x2="130" y2="${y2}" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" transform="rotate(${angle} 130 130)" />`;
+      }
+      group.innerHTML = svgTicks;
+    }
+
+    function initBinaryGrid() {
+      const grid = document.getElementById('binaryMatrixGrid');
+      const labels = ['H1', 'H2', 'M1', 'M2', 'S1', 'S2'];
+      grid.innerHTML = labels.map((lbl, colIdx) => `
+        <div class="flex flex-col items-center gap-1.5">
+          <span class="text-[9px] font-mono-num text-slate-300 font-bold">${lbl}</span>
+          ${[8, 4, 2, 1].map(bit => `
+            <span id="bin_${colIdx}_${bit}" class="w-4 h-4 rounded-full bg-white/10 border border-white/20 transition-all"></span>
+          `).join('')}
+        </div>
+      `).join('');
+    }
+
+    const tzFormatterCache = {};
+    function getTimePartsInZone(date, timeZone) {
+      let formatter = tzFormatterCache[timeZone];
+      if (!formatter) {
+        formatter = new Intl.DateTimeFormat('en-US', {
+          timeZone,
+          hour12: false,
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          weekday: 'short',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+        tzFormatterCache[timeZone] = formatter;
+      }
+      const parts = formatter.formatToParts(date);
+      const map = {};
+      parts.forEach(p => { map[p.type] = p.value; });
+      const hour24 = parseInt(map.hour, 10) % 24;
+      const minute = parseInt(map.minute, 10);
+      const second = parseInt(map.second, 10);
+      return {
+        hour24,
+        minute,
+        second,
+        year: parseInt(map.year, 10),
+        month: parseInt(map.month, 10),
+        day: parseInt(map.day, 10)
+      };
+    }
+
+    function renderPolarClock(smoothHour24, smoothMin, smoothSec, ms) {
+      const w = polarCanvas.width;
+      const h = polarCanvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      polarCtx.clearRect(0, 0, w, h);
+      const palette = THEME_COLORS[state.theme];
+
+      const rings = [
+        { r: 102, ratio: (ms / 1000), color: palette.c3, width: 6 },
+        { r: 88,  ratio: (smoothSec / 60), color: palette.c1, width: 9 },
+        { r: 72,  ratio: (smoothMin / 60), color: palette.c2, width: 9 },
+        { r: 56,  ratio: (smoothHour24 / 24), color: '#ffffff', width: 9 }
+      ];
+
+      rings.forEach(ring => {
+        polarCtx.beginPath();
+        polarCtx.arc(cx, cy, ring.r, 0, Math.PI * 2);
+        polarCtx.strokeStyle = 'rgba(255,255,255,0.1)';
+        polarCtx.lineWidth = ring.width;
+        polarCtx.stroke();
+
+        polarCtx.beginPath();
+        polarCtx.arc(cx, cy, ring.r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * ring.ratio);
+        polarCtx.strokeStyle = ring.color;
+        polarCtx.lineWidth = ring.width;
+        polarCtx.lineCap = 'round';
+        polarCtx.stroke();
+      });
+    }
+
+    function updateBinaryClock(hStr, mStr, sStr, now) {
+      const digits = [
+        parseInt(hStr[0], 10), parseInt(hStr[1], 10),
+        parseInt(mStr[0], 10), parseInt(mStr[1], 10),
+        parseInt(sStr[0], 10), parseInt(sStr[1], 10)
+      ];
+      const palette = THEME_COLORS[state.theme];
+      digits.forEach((d, colIdx) => {
+        [8, 4, 2, 1].forEach(bit => {
+          const el = document.getElementById(`bin_${colIdx}_${bit}`);
+          if (!el) return;
+          const on = (d & bit) !== 0;
+          el.style.backgroundColor = on ? palette.c1 : 'rgba(255,255,255,0.08)';
+          el.style.boxShadow = on ? `0 0 10px ${palette.c1}` : 'none';
+        });
+      });
+      document.getElementById('unixEpochReadout').textContent = Math.floor(now.getTime() / 1000);
+      document.getElementById('utcIsoReadout').textContent = now.toISOString().slice(11, 19);
+    }
+
+    // 7-Decimal Place High-Precision Progress Calculation
+    function updateAstroProgress(now, tzParts) {
+      const ms = now.getMilliseconds();
+
+      // Exact Year Progress to 7 decimal places
+      const startOfYear = new Date(now.getFullYear(), 0, 1).getTime();
+      const endOfYear = new Date(now.getFullYear() + 1, 0, 1).getTime();
+      const yearPct = ((now.getTime() - startOfYear) / (endOfYear - startOfYear)) * 100;
+      document.getElementById('yearProgressText').textContent = `${yearPct.toFixed(7)}%`;
+      document.getElementById('yearProgressBar').style.width = `${Math.min(100, Math.max(0, yearPct)).toFixed(2)}%`;
+
+      // Exact Day Progress in selected timezone to 7 decimal places
+      const msInDay = ((tzParts.hour24 * 3600 + tzParts.minute * 60 + tzParts.second) * 1000) + ms;
+      const dayPct = (msInDay / 86400000) * 100;
+      document.getElementById('dayProgressText').textContent = `${dayPct.toFixed(7)}%`;
+      document.getElementById('dayProgressBar').style.width = `${Math.min(100, Math.max(0, dayPct)).toFixed(2)}%`;
+
+      // Lunar synodic cycle calculation
+      const refNewMoon = Date.UTC(2000, 0, 6, 18, 14, 0);
+      const daysSince = (now.getTime() - refNewMoon) / 86400000;
+      const phase = ((daysSince % 29.530588) + 29.530588) % 29.530588;
+      const phaseRatio = phase / 29.530588;
+      let icon = '🌑', name = '신월';
+      if (phaseRatio < 0.06) { icon = '🌑'; name = '신월'; }
+      else if (phaseRatio < 0.22) { icon = '🌒'; name = '초승달'; }
+      else if (phaseRatio < 0.28) { icon = '🌓'; name = '상현달'; }
+      else if (phaseRatio < 0.47) { icon = '🌔'; name = '차오르는 달'; }
+      else if (phaseRatio < 0.53) { icon = '🌕'; name = '보름달'; }
+      else if (phaseRatio < 0.72) { icon = '🌖'; name = '기우는 달'; }
+      else if (phaseRatio < 0.78) { icon = '🌗'; name = '하현달'; }
+      else { icon = '🌘'; name = '그믐달'; }
+      const illum = ((1 - Math.cos(phaseRatio * Math.PI * 2)) * 50).toFixed(5);
+      document.getElementById('moonPhaseBadge').textContent = `${icon} ${name} (${illum}%)`;
+    }
+
+    function updateClockView(now) {
+      const ms = now.getMilliseconds();
+      const tzParts = getTimePartsInZone(now, state.clock.selectedTz);
+      const { hour24, minute, second } = tzParts;
+
+      if (second !== state.clock.lastSecond) {
+        state.clock.lastSecond = second;
+        if (state.clock.tickSound && state.activeView === 0) {
+          playSfx('tick');
+        }
+        checkSmartAlarms(now);
+        updateAlarmCountdownLabels(now);
+
+        const koDateFormatter = new Intl.DateTimeFormat('ko-KR', {
+          timeZone: state.clock.selectedTz,
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          weekday: 'long'
+        });
+        const formattedDate = koDateFormatter.format(now);
+        document.getElementById('clockDateDisplay').textContent = `• ${formattedDate}`;
+        document.getElementById('clockDateDisplayMobile').textContent = formattedDate;
+
+        const zones = [
+          { id: 'wtSeoul', tz: 'Asia/Seoul' },
+          { id: 'wtNewYork', tz: 'America/New_York' },
+          { id: 'wtLondon', tz: 'Europe/London' },
+          { id: 'wtTokyo', tz: 'Asia/Tokyo' },
+          { id: 'wtParis', tz: 'Europe/Paris' },
+          { id: 'wtDubai', tz: 'Asia/Dubai' },
+          { id: 'wtSydney', tz: 'Australia/Sydney' },
+          { id: 'wtLA', tz: 'America/Los_Angeles' }
+        ];
+        zones.forEach(z => {
+          const p = getTimePartsInZone(now, z.tz);
+          document.getElementById(z.id).textContent = `${String(p.hour24).padStart(2, '0')}:${String(p.minute).padStart(2, '0')}`;
+        });
+      }
+
+      const smoothSec = second + ms / 1000;
+      const smoothMin = minute + smoothSec / 60;
+      const smoothHour = (hour24 % 12) + smoothMin / 60;
+
+      document.getElementById('analogSecHand').setAttribute('transform', `rotate(${smoothSec * 6} 130 130)`);
+      document.getElementById('analogMinHand').setAttribute('transform', `rotate(${smoothMin * 6} 130 130)`);
+      document.getElementById('analogHourHand').setAttribute('transform', `rotate(${smoothHour * 30} 130 130)`);
+      document.getElementById('clockSecOrb').setAttribute('transform', `rotate(${smoothSec * 6} 130 130)`);
+
+      const secCircumference = 653.45;
+      const secOffset = secCircumference - (smoothSec / 60) * secCircumference;
+      document.getElementById('clockSecArc').style.strokeDashoffset = secOffset.toFixed(2);
+
+      let dispHour = hour24;
+      const ampmEl = document.getElementById('clockAmPm');
+      if (!state.clock.use24h) {
+        ampmEl.textContent = hour24 >= 12 ? 'PM' : 'AM';
+        dispHour = hour24 % 12 || 12;
+      } else {
+        ampmEl.textContent = '24H CHRONO';
+      }
+
+      const hStr = String(dispHour).padStart(2, '0');
+      const mStr = String(minute).padStart(2, '0');
+      const sStr = String(second).padStart(2, '0');
+      const cStr = String(Math.floor(ms / 10)).padStart(2, '0');
+      document.getElementById('clockDigitsHM').textContent = `${hStr}:${mStr}`;
+      document.getElementById('clockDigitsSec').textContent = `:${sStr}`;
+      document.getElementById('clockDigitsMs').textContent = `.${cStr}`;
+
+      if (state.clock.faceMode === 1) {
+        renderPolarClock(hour24 + smoothMin / 60, smoothMin, smoothSec, ms);
+        document.getElementById('polarCenterReadout').textContent = `${hStr}:${mStr}:${sStr}`;
+        document.getElementById('polarSubMs').textContent = `.${String(ms).padStart(3, '0')}`;
+      } else if (state.clock.faceMode === 2) {
+        updateBinaryClock(String(hour24).padStart(2, '0'), mStr, sStr, now);
+      }
+
+      updateAstroProgress(now, tzParts);
+    }
+
+    // =========================================================================
+    // 6. VIEW 1: STOPWATCH & TELEMETRY ANALYTICS
+    // =========================================================================
+    const swFxCanvas = document.getElementById('swFxCanvas');
+    const swFxCtx = swFxCanvas.getContext('2d');
+    let swRadarAngle = 0;
+
+    function formatStopwatchMs(ms) {
+      const totalCentis = Math.floor(ms / 10);
+      const centis = totalCentis % 100;
+      const totalSeconds = Math.floor(totalCentis / 100);
+      const secs = totalSeconds % 60;
+      const mins = Math.floor(totalSeconds / 60);
+      return {
+        main: `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`,
+        sub: `.${String(centis).padStart(2, '0')}`
+      };
+    }
+
+    function renderStopwatchRadar(running, currentElapsed) {
+      const w = swFxCanvas.width;
+      const h = swFxCanvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+      swFxCtx.clearRect(0, 0, w, h);
+
+      const palette = THEME_COLORS[state.theme];
+      swRadarAngle += running ? 0.05 : 0.008;
+
+      const bars = 36;
+      for (let i = 0; i < bars; i++) {
+        const a = (Math.PI * 2 * i) / bars + swRadarAngle * 0.3;
+        const wave = running ? Math.abs(Math.sin(i * 0.6 + currentElapsed * 0.01)) * 10 : 3;
+        const rInner = 64;
+        const rOuter = rInner + wave;
+
+        swFxCtx.beginPath();
+        swFxCtx.moveTo(cx + Math.cos(a) * rInner, cy + Math.sin(a) * rInner);
+        swFxCtx.lineTo(cx + Math.cos(a) * rOuter, cy + Math.sin(a) * rOuter);
+        swFxCtx.strokeStyle = i % 2 === 0 ? palette.c1 : palette.c2;
+        swFxCtx.globalAlpha = running ? 0.6 : 0.2;
+        swFxCtx.lineWidth = 2;
+        swFxCtx.stroke();
+      }
+    }
+
+    function updateStopwatchStats() {
+      const laps = state.stopwatch.laps;
+      if (laps.length === 0) {
+        document.getElementById('swStatAvg').textContent = '00:00.00';
+        document.getElementById('swStatBest').textContent = '00:00.00';
+        document.getElementById('swStatStd').textContent = '±0.00s';
+        document.getElementById('swStatLpm').textContent = '0.0 LPM';
+        return;
+      }
+      const splits = laps.map(l => l.splitMs);
+      const sum = splits.reduce((a, b) => a + b, 0);
+      const avg = sum / splits.length;
+      const best = Math.min(...splits);
+      const variance = splits.reduce((acc, v) => acc + Math.pow(v - avg, 2), 0) / splits.length;
+      const stdSec = Math.sqrt(variance) / 1000;
+      const lpm = avg > 0 ? 60000 / avg : 0;
+
+      const avgFmt = formatStopwatchMs(avg);
+      const bestFmt = formatStopwatchMs(best);
+      document.getElementById('swStatAvg').textContent = `${avgFmt.main}${avgFmt.sub}`;
+      document.getElementById('swStatBest').textContent = `${bestFmt.main}${bestFmt.sub}`;
+      document.getElementById('swStatStd').textContent = `±${stdSec.toFixed(2)}s`;
+      document.getElementById('swStatLpm').textContent = `${lpm.toFixed(1)} LPM`;
+    }
+
+    function updateStopwatchView(perfNow) {
+      const currentElapsed = state.stopwatch.running
+        ? state.stopwatch.elapsed + (perfNow - state.stopwatch.startTime)
+        : state.stopwatch.elapsed;
+
+      const formatted = formatStopwatchMs(currentElapsed);
+      document.getElementById('swMinSec').textContent = formatted.main;
+      document.getElementById('swMillis').textContent = formatted.sub;
+
+      const secCycle = (currentElapsed % 60000) / 60000;
+      document.getElementById('swMainArc').style.strokeDashoffset = (603.2 * (1 - secCycle)).toFixed(2);
+
+      const prevLapTotal = state.stopwatch.laps.length > 0 ? state.stopwatch.laps[0].totalMs : 0;
+      const currentLapSplit = Math.max(0, currentElapsed - prevLapTotal);
+      const lapFmt = formatStopwatchMs(currentLapSplit);
+      document.getElementById('swCurrentLapReadout').textContent = `LAP ${lapFmt.main}${lapFmt.sub}`;
+
+      const lapCycle = (currentLapSplit % 10000) / 10000;
+      document.getElementById('swLapArc').style.strokeDashoffset = (515.2 * (1 - lapCycle)).toFixed(2);
+
+      renderStopwatchRadar(state.stopwatch.running, currentElapsed);
+    }
+
+    function renderLapsList() {
+      const container = document.getElementById('swLapsContainer');
+      const laps = state.stopwatch.laps;
+      document.getElementById('swLapCounterBadge').textContent = `LAPS: ${laps.length}`;
+      updateStopwatchStats();
+
+      if (laps.length === 0) {
+        container.innerHTML = `
+          <div id="swEmptyState" class="text-center py-3 text-xs text-slate-300">
+            스톱워치를 시작하고 <strong>랩 기록</strong>을 누르면 실시간 구간 속도와 표준편차 통계가 표시됩니다.
+          </div>`;
+        return;
+      }
+
+      let minSplit = Infinity;
+      let maxSplit = -Infinity;
+      laps.forEach(l => {
+        if (l.splitMs < minSplit) minSplit = l.splitMs;
+        if (l.splitMs > maxSplit) maxSplit = l.splitMs;
+      });
+
+      container.innerHTML = laps.map(l => {
+        const splitFmt = formatStopwatchMs(l.splitMs);
+        const totalFmt = formatStopwatchMs(l.totalMs);
+        const isFastest = laps.length >= 2 && l.splitMs === minSplit;
+        const isSlowest = laps.length >= 2 && l.splitMs === maxSplit;
+
+        let badgeHtml = '';
+        let rowBorder = 'border-white/15';
+        if (isFastest) {
+          badgeHtml = '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-emerald-500/25 text-emerald-300 text-[10px] font-black">⚡ 최고속</span>';
+          rowBorder = 'border-emerald-400/50 bg-emerald-950/35';
+        } else if (isSlowest) {
+          badgeHtml = '<span class="ml-1.5 px-1.5 py-0.5 rounded bg-rose-500/25 text-rose-300 text-[10px] font-black">최저속</span>';
+          rowBorder = 'border-rose-400/40 bg-rose-950/30';
+        }
+
+        const pctWidth = maxSplit > 0 ? Math.max(18, Math.round((l.splitMs / maxSplit) * 100)) : 100;
+
+        return `
+          <div class="glass-pill rounded-xl px-3 py-1.5 border ${rowBorder} flex items-center justify-between text-xs">
+            <div class="flex flex-col gap-1 w-2/5">
+              <div class="flex items-center font-bold text-white">
+                <span>LAP #${String(l.lapNum).padStart(2, '0')}</span>
+                ${badgeHtml}
+              </div>
+              <div class="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div class="h-full rounded-full" style="width:${pctWidth}%; background: linear-gradient(90deg, var(--accent-1), var(--accent-2));"></div>
+              </div>
+            </div>
+            <div class="flex items-center gap-5 font-mono-num">
+              <span class="font-extrabold text-white">+${splitFmt.main}${splitFmt.sub}</span>
+              <span class="text-slate-200">${totalFmt.main}${totalFmt.sub}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleStopwatch(e) {
+      const perfNow = performance.now();
+      const startStopLabel = document.getElementById('swStartStopLabel');
+      const lapResetBtn = document.getElementById('swLapResetBtn');
+      const statusDot = document.getElementById('swStatusDot');
+      const statusText = document.getElementById('swStatusText');
+      const halo = document.getElementById('swGlowHalo');
+      const navBadge = document.getElementById('navBadgeSw');
+
+      if (!state.stopwatch.running) {
+        state.stopwatch.running = true;
+        state.stopwatch.startTime = perfNow;
+        startStopLabel.textContent = '일시정지';
+        lapResetBtn.disabled = false;
+        lapResetBtn.textContent = '랩 기록';
+        statusDot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping';
+        statusText.textContent = 'RUNNING';
+        statusText.className = 'text-xs font-extrabold text-emerald-400 uppercase tracking-wider';
+        halo.classList.remove('opacity-0');
+        halo.classList.add('opacity-100', 'active-halo');
+        navBadge.classList.remove('hidden');
+        playSfx('start');
+        const bx = (e && e.clientX) ? e.clientX : window.innerWidth / 2;
+        const by = (e && e.clientY) ? e.clientY : window.innerHeight / 2;
+        spawnParticleBurst(bx, by, 28);
+      } else {
+        state.stopwatch.elapsed += (perfNow - state.stopwatch.startTime);
+        state.stopwatch.running = false;
+        startStopLabel.textContent = '계속';
+        lapResetBtn.textContent = '초기화';
+        statusDot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400';
+        statusText.textContent = 'PAUSED';
+        statusText.className = 'text-xs font-extrabold text-amber-400 uppercase tracking-wider';
+        halo.classList.remove('opacity-100', 'active-halo');
+        halo.classList.add('opacity-0');
+        navBadge.classList.add('hidden');
+        playSfx('stop');
+      }
+    }
+
+    function lapOrResetStopwatch(e) {
+      const perfNow = performance.now();
+      const bx = (e && e.clientX) ? e.clientX : window.innerWidth / 2;
+      const by = (e && e.clientY) ? e.clientY : window.innerHeight / 2;
+      if (state.stopwatch.running) {
+        const totalMs = state.stopwatch.elapsed + (perfNow - state.stopwatch.startTime);
+        const prevTotal = state.stopwatch.laps.length > 0 ? state.stopwatch.laps[0].totalMs : 0;
+        const splitMs = totalMs - prevTotal;
+        const lapNum = state.stopwatch.laps.length + 1;
+        state.stopwatch.laps.unshift({ lapNum, splitMs, totalMs });
+        renderLapsList();
+        playSfx('lap');
+        spawnParticleBurst(bx, by, 24);
+      } else {
+        state.stopwatch.elapsed = 0;
+        state.stopwatch.laps = [];
+        document.getElementById('swStartStopLabel').textContent = '시작';
+        const lapResetBtn = document.getElementById('swLapResetBtn');
+        lapResetBtn.textContent = '초기화';
+        lapResetBtn.disabled = true;
+        document.getElementById('swStatusDot').className = 'w-2.5 h-2.5 rounded-full bg-slate-400';
+        document.getElementById('swStatusText').textContent = 'READY';
+        document.getElementById('swStatusText').className = 'text-xs font-extrabold text-slate-200 uppercase tracking-wider';
+        renderLapsList();
+        updateStopwatchView(perfNow);
+        playSfx('click');
+        spawnShockwave(bx, by, 150);
+      }
+    }
+
+    // =========================================================================
+    // 7. VIEW 2: LIQUID TIMER & PARALLEL MULTI-TIMERS
+    // =========================================================================
+    const waveCanvas = document.getElementById('timerWaveCanvas');
+    const waveCtx = waveCanvas.getContext('2d');
+    let wavePhase = 0;
+
+    function formatTimerSeconds(totalSec) {
+      const clamped = Math.max(0, Math.ceil(totalSec));
+      const h = Math.floor(clamped / 3600);
+      const m = Math.floor((clamped % 3600) / 60);
+      const s = clamped % 60;
+      if (h > 0) {
+        return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+      }
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function syncTimerStepperLabels() {
+      const totalSec = Math.round(state.timer.remainMs / 1000);
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      document.getElementById('timerInputH').textContent = String(h).padStart(2, '0');
+      document.getElementById('timerInputM').textContent = String(m).padStart(2, '0');
+      document.getElementById('timerInputS').textContent = String(s).padStart(2, '0');
+
+      const targetDate = new Date(Date.now() + state.timer.remainMs);
+      const hh = String(targetDate.getHours()).padStart(2, '0');
+      const mm = String(targetDate.getMinutes()).padStart(2, '0');
+      document.getElementById('timerTargetClock').textContent = `${hh}:${mm}`;
+    }
+
+    function drawLiquidWave(ratio) {
+      const w = waveCanvas.width;
+      const h = waveCanvas.height;
+      waveCtx.clearRect(0, 0, w, h);
+
+      const palette = THEME_COLORS[state.theme];
+      const clampedRatio = Math.max(0, Math.min(1, ratio));
+      const fillTopY = h * (1 - clampedRatio);
+
+      wavePhase += state.timer.running ? 0.065 : 0.025;
+
+      waveCtx.beginPath();
+      waveCtx.moveTo(0, h);
+      for (let x = 0; x <= w; x += 4) {
+        const y = fillTopY + Math.sin(x * 0.045 + wavePhase) * 6;
+        waveCtx.lineTo(x, y);
+      }
+      waveCtx.lineTo(w, h);
+      waveCtx.closePath();
+      waveCtx.fillStyle = `rgba(${palette.rgb2}, 0.42)`;
+      waveCtx.fill();
+
+      waveCtx.beginPath();
+      waveCtx.moveTo(0, h);
+      for (let x = 0; x <= w; x += 4) {
+        const y = fillTopY + Math.cos(x * 0.04 - wavePhase * 1.3) * 5;
+        waveCtx.lineTo(x, y);
+      }
+      waveCtx.lineTo(w, h);
+      waveCtx.closePath();
+      const grad = waveCtx.createLinearGradient(0, fillTopY, 0, h);
+      grad.addColorStop(0, `rgba(${palette.rgb1}, 0.78)`);
+      grad.addColorStop(1, `rgba(${palette.rgb2}, 0.82)`);
+      waveCtx.fillStyle = grad;
+      waveCtx.fill();
+
+      for (let i = 0; i < state.timer.bubbles.length; i++) {
+        const b = state.timer.bubbles[i];
+        b.y -= b.vy * (state.timer.running ? 1.8 : 0.6);
+        b.wobble += 0.07;
+        const bx = b.x + Math.sin(b.wobble) * 2.5;
+        if (b.y < fillTopY + 4) {
+          b.y = h - 4;
+          b.x = Math.random() * w;
+        }
+        if (b.y >= fillTopY) {
+          waveCtx.beginPath();
+          waveCtx.arc(bx, b.y, b.r, 0, Math.PI * 2);
+          waveCtx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+          waveCtx.fill();
+        }
+      }
+    }
+
+    function renderMultiTimers() {
+      const container = document.getElementById('multiTimerList');
+      container.innerHTML = state.timer.multiTimers.map(mt => `
+        <div class="glass-pill rounded-xl p-2 flex flex-col justify-between border ${mt.running ? 'border-sky-400/70 bg-sky-950/30' : 'border-white/15'}">
+          <div class="flex items-center justify-between">
+            <span class="text-[10px] font-bold text-slate-100 truncate">${mt.name}</span>
+          </div>
+          <div class="font-mono-num text-sm font-black text-white my-1">${formatTimerSeconds(mt.remainSec)}</div>
+          <div class="flex gap-1">
+            <button data-mt-toggle="${mt.id}" class="flex-1 py-1 rounded bg-white/10 hover:bg-white/20 text-[10px] font-bold text-sky-300">
+              ${mt.running ? '일시정지' : '시작'}
+            </button>
+            <button data-mt-reset="${mt.id}" class="px-2 py-1 rounded bg-white/5 hover:bg-white/15 text-[10px] text-slate-300">↺</button>
+          </div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('[data-mt-toggle]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-mt-toggle'), 10);
+          const item = state.timer.multiTimers.find(m => m.id === id);
+          if (item) {
+            item.running = !item.running;
+            playSfx('click');
+            renderMultiTimers();
+          }
+        });
+      });
+
+      container.querySelectorAll('[data-mt-reset]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-mt-reset'), 10);
+          const item = state.timer.multiTimers.find(m => m.id === id);
+          if (item) {
+            item.running = false;
+            item.remainSec = item.totalSec;
+            playSfx('click');
+            renderMultiTimers();
+          }
+        });
+      });
+    }
+
+    function triggerTimerAlarm(customMessage = '타이머가 완료되었습니다!') {
+      state.timer.running = false;
+      state.timer.remainMs = 0;
+      state.timer.alarming = true;
+
+      document.getElementById('alarmBannerText').textContent = customMessage;
+      document.getElementById('timerStartPauseLabel').textContent = '알람 중지';
+      document.getElementById('timerStatusText').textContent = 'TIME UP!';
+      document.getElementById('timerStatusDot').className = 'w-2.5 h-2.5 rounded-full bg-rose-500 animate-ping';
+      document.getElementById('timerCardPanel').classList.add('alarm-firing');
+      document.getElementById('alarmBanner').classList.remove('hidden');
+      document.getElementById('alarmBanner').classList.add('flex');
+      document.getElementById('navBadgeTimer').classList.remove('hidden');
+
+      spawnParticleBurst(window.innerWidth / 2, window.innerHeight / 2, 48);
+      playSfx('alarm');
+      if (state.timer.alarmInterval) clearInterval(state.timer.alarmInterval);
+      state.timer.alarmInterval = setInterval(() => {
+        playSfx('alarm');
+        const rx = window.innerWidth * (0.25 + Math.random() * 0.5);
+        const ry = window.innerHeight * (0.25 + Math.random() * 0.5);
+        spawnParticleBurst(rx, ry, 36);
+      }, 1400);
+    }
+
+    function stopTimerAlarm() {
+      state.timer.alarming = false;
+      if (state.timer.alarmInterval) {
+        clearInterval(state.timer.alarmInterval);
+        state.timer.alarmInterval = null;
+      }
+      document.getElementById('timerCardPanel').classList.remove('alarm-firing');
+      document.getElementById('alarmBanner').classList.add('hidden');
+      document.getElementById('alarmBanner').classList.remove('flex');
+      document.getElementById('navBadgeTimer').classList.add('hidden');
+      document.getElementById('timerStatusText').textContent = 'LIQUID TIMER';
+      document.getElementById('timerStatusDot').className = 'w-2.5 h-2.5 rounded-full bg-sky-400';
+      document.getElementById('timerStartPauseLabel').textContent = '시작';
+      document.getElementById('timerStepperRow').classList.remove('opacity-40', 'pointer-events-none');
+    }
+
+    function updateTimerView() {
+      if (state.timer.running) {
+        const left = state.timer.endTime - Date.now();
+        if (left <= 0) {
+          triggerTimerAlarm();
+        } else {
+          state.timer.remainMs = left;
+        }
+      }
+
+      const ratio = state.timer.totalMs > 0 ? state.timer.remainMs / state.timer.totalMs : 0;
+      const secLeft = state.timer.remainMs / 1000;
+      document.getElementById('timerReadout').textContent = formatTimerSeconds(secLeft);
+      document.getElementById('timerPercentText').textContent = `${Math.round(ratio * 100)}%`;
+
+      const offset = 615.75 * (1 - ratio);
+      document.getElementById('timerProgressArc').style.strokeDashoffset = offset.toFixed(2);
+
+      drawLiquidWave(ratio);
+    }
+
+    function setTimerDurationSeconds(seconds) {
+      if (state.timer.alarming) stopTimerAlarm();
+      state.timer.running = false;
+      const clampedSec = Math.max(5, Math.min(359999, seconds));
+      state.timer.totalMs = clampedSec * 1000;
+      state.timer.remainMs = clampedSec * 1000;
+      document.getElementById('timerStartPauseLabel').textContent = '시작';
+      document.getElementById('timerStepperRow').classList.remove('opacity-40', 'pointer-events-none');
+      document.getElementById('navBadgeTimer').classList.add('hidden');
+      syncTimerStepperLabels();
+      updateTimerView();
+    }
+
+    function toggleTimer(e) {
+      if (state.timer.alarming) {
+        stopTimerAlarm();
+        setTimerDurationSeconds(Math.round(state.timer.totalMs / 1000));
+        return;
+      }
+
+      const labelEl = document.getElementById('timerStartPauseLabel');
+      const stepperRow = document.getElementById('timerStepperRow');
+      const navBadge = document.getElementById('navBadgeTimer');
+      const bx = (e && e.clientX) ? e.clientX : window.innerWidth / 2;
+      const by = (e && e.clientY) ? e.clientY : window.innerHeight / 2;
+
+      if (!state.timer.running) {
+        if (state.timer.remainMs <= 0) {
+          state.timer.remainMs = state.timer.totalMs;
+        }
+        state.timer.running = true;
+        state.timer.endTime = Date.now() + state.timer.remainMs;
+        labelEl.textContent = '일시정지';
+        stepperRow.classList.add('opacity-40', 'pointer-events-none');
+        navBadge.classList.remove('hidden');
+        syncTimerStepperLabels();
+        playSfx('start');
+        spawnParticleBurst(bx, by, 30);
+      } else {
+        state.timer.remainMs = Math.max(0, state.timer.endTime - Date.now());
+        state.timer.running = false;
+        labelEl.textContent = '계속';
+        stepperRow.classList.remove('opacity-40', 'pointer-events-none');
+        navBadge.classList.add('hidden');
+        syncTimerStepperLabels();
+        playSfx('stop');
+      }
+    }
+
+    function resetTimer(e) {
+      if (state.timer.alarming) stopTimerAlarm();
+      state.timer.running = false;
+      state.timer.remainMs = state.timer.totalMs;
+      document.getElementById('timerStartPauseLabel').textContent = '시작';
+      document.getElementById('timerStepperRow').classList.remove('opacity-40', 'pointer-events-none');
+      document.getElementById('navBadgeTimer').classList.add('hidden');
+      syncTimerStepperLabels();
+      updateTimerView();
+      playSfx('click');
+      if (e && e.clientX) spawnShockwave(e.clientX, e.clientY, 150);
+    }
+
+    // =========================================================================
+    // 8. VIEW 3: RELIABLE SMART ALARMS (Countdown + Individual Test + Snooze)
+    // =========================================================================
+    function getAlarmRemainingText(timeStr, now = new Date()) {
+      const parts = timeStr.split(':');
+      if (parts.length < 2) return '';
+      const targetH = parseInt(parts[0], 10);
+      const targetM = parseInt(parts[1], 10);
+      const target = new Date(now);
+      target.setHours(targetH, targetM, 0, 0);
+      if (target <= now) {
+        target.setDate(target.getDate() + 1);
+      }
+      const diffSec = Math.max(0, Math.floor((target - now) / 1000));
+      const h = Math.floor(diffSec / 3600);
+      const m = Math.floor((diffSec % 3600) / 60);
+      const s = diffSec % 60;
+      if (h > 0) return `${h}시간 ${m}분 ${s}초 후 울림`;
+      if (m > 0) return `${m}분 ${s}초 후 울림`;
+      return `${s}초 후 울림!`;
+    }
+
+    function updateAlarmCountdownLabels(now = new Date()) {
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const ss = String(now.getSeconds()).padStart(2, '0');
+      const badge = document.getElementById('alarmCurrentClockBadge');
+      if (badge) badge.textContent = `현재 ${hh}:${mm}:${ss}`;
+
+      state.alarms.forEach(a => {
+        const el = document.getElementById(`alarm_rem_${a.id}`);
+        if (el) {
+          el.textContent = a.enabled ? `⏳ ${getAlarmRemainingText(a.time, now)}` : '비활성화됨';
+        }
+      });
+    }
+
+    function renderAlarmsList() {
+      const container = document.getElementById('alarmsListContainer');
+      const now = new Date();
+
+      if (state.alarms.length === 0) {
+        container.innerHTML = `<div class="text-center py-6 text-xs text-slate-300">등록된 알람이 없습니다. 위에서 시간을 맞추고 <strong>+ 알람 추가</strong>를 눌러보세요.</div>`;
+        return;
+      }
+
+      container.innerHTML = state.alarms.map(a => `
+        <div class="glass-pill rounded-2xl px-3.5 py-2.5 flex items-center justify-between border ${a.enabled ? 'border-sky-400/60 bg-slate-900/90' : 'border-white/10 opacity-60'}">
+          <div class="flex items-center gap-3">
+            <span class="font-mono-num text-2xl font-black text-white neon-digit-glow">${a.time}</span>
+            <div>
+              <div class="text-xs font-extrabold text-white">${a.label}</div>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span class="text-[10px] ${a.mathLock ? 'text-amber-300' : 'text-sky-300'} font-bold">
+                  ${a.mathLock ? '🧮 암산 미션' : '🔔 일반 알람'}
+                </span>
+                <span id="alarm_rem_${a.id}" class="text-[10px] font-mono-num text-emerald-300 font-semibold">
+                  ${a.enabled ? `⏳ ${getAlarmRemainingText(a.time, now)}` : '비활성화됨'}
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button data-alarm-ring="${a.id}" title="이 알람 지금 바로 테스트" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-sky-500/30 text-[10px] font-bold text-sky-200">
+              🔔 테스트
+            </button>
+            <button data-alarm-toggle="${a.id}" class="px-3 py-1 rounded-xl text-xs font-black ${a.enabled ? 'bg-emerald-500/30 text-emerald-200 border border-emerald-400/50' : 'bg-slate-800 text-slate-400'}">
+              ${a.enabled ? 'ON' : 'OFF'}
+            </button>
+            <button data-alarm-del="${a.id}" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-rose-500/30 text-slate-300 hover:text-rose-200 text-xs font-bold">✕</button>
+          </div>
+        </div>
+      `).join('');
+
+      container.querySelectorAll('[data-alarm-ring]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-alarm-ring'), 10);
+          const al = state.alarms.find(x => x.id === id);
+          if (al) {
+            openAlarmModal(`⏰ [${al.label}] (${al.time})`, al.mathLock);
+          }
+        });
+      });
+
+      container.querySelectorAll('[data-alarm-toggle]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-alarm-toggle'), 10);
+          const al = state.alarms.find(x => x.id === id);
+          if (al) {
+            al.enabled = !al.enabled;
+            al.lastTriggeredMinute = '';
+            playSfx('click');
+            renderAlarmsList();
+          }
+        });
+      });
+
+      container.querySelectorAll('[data-alarm-del]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = parseInt(btn.getAttribute('data-alarm-del'), 10);
+          state.alarms = state.alarms.filter(x => x.id !== id);
+          playSfx('click');
+          renderAlarmsList();
+        });
+      });
+    }
+
+    function openAlarmModal(titleText = '기상 미션 알람 작동 중!', useMathLock = true) {
+      const n1 = Math.floor(Math.random() * 25) + 11;
+      const n2 = Math.floor(Math.random() * 20) + 11;
+      state.mathChallenge.answer = n1 + n2;
+      state.mathChallenge.active = true;
+
+      document.getElementById('mathAlarmTitle').textContent = titleText;
+      const mathSection = document.getElementById('mathChallengeSection');
+      const subtitle = document.getElementById('mathAlarmSubtitle');
+
+      if (useMathLock) {
+        mathSection.classList.remove('hidden');
+        subtitle.textContent = '암산 문제를 풀거나 아래 버튼으로 알람을 제어하세요.';
+        document.getElementById('mathProblemBox').textContent = `${n1} + ${n2} = ?`;
+        document.getElementById('mathAnswerInput').value = '';
+        document.getElementById('mathFeedbackText').textContent = '';
+      } else {
+        mathSection.classList.add('hidden');
+        subtitle.textContent = '지정된 알람 시각이 되었습니다!';
+      }
+
+      const modal = document.getElementById('mathAlarmModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      playSfx('alarm');
+      spawnParticleBurst(window.innerWidth / 2, window.innerHeight / 2, 48);
+      if (state.mathChallenge.alarmInterval) clearInterval(state.mathChallenge.alarmInterval);
+      state.mathChallenge.alarmInterval = setInterval(() => {
+        playSfx('alarm');
+        spawnParticleBurst(window.innerWidth / 2, window.innerHeight / 2, 30);
+      }, 1500);
+    }
+
+    function closeAlarmModal() {
+      state.mathChallenge.active = false;
+      if (state.mathChallenge.alarmInterval) {
+        clearInterval(state.mathChallenge.alarmInterval);
+        state.mathChallenge.alarmInterval = null;
+      }
+      const modal = document.getElementById('mathAlarmModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      playSfx('stop');
+    }
+
+    function checkSmartAlarms(now) {
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      const curHM = `${hh}:${mm}`;
+
+      state.alarms.forEach(a => {
+        if (a.enabled && a.time === curHM && a.lastTriggeredMinute !== curHM) {
+          a.lastTriggeredMinute = curHM;
+          openAlarmModal(`⏰ [${a.label}] (${a.time})`, a.mathLock);
+        }
+      });
+    }
+
+    // =========================================================================
+    // 9. VIEW 4 & 5: CUSTOM POMODORO, METRONOME & 4-7-8 BREATHING ENGINE
+    // =========================================================================
+    function applyCustomPomodoroMinutes(modeKey, newMin) {
+      const limits = { focus: [1, 180], short: [1, 60], long: [1, 90] };
+      const [minVal, maxVal] = limits[modeKey];
+      const clamped = Math.max(minVal, Math.min(maxVal, parseInt(newMin, 10) || minVal));
+      state.pomodoro.customMinutes[modeKey] = clamped;
+
+      // Sync inputs & tab labels
+      document.getElementById('pomoInputFocus').value = state.pomodoro.customMinutes.focus;
+      document.getElementById('pomoInputShort').value = state.pomodoro.customMinutes.short;
+      document.getElementById('pomoInputLong').value = state.pomodoro.customMinutes.long;
+
+      document.getElementById('pomoTabFocusMin').textContent = state.pomodoro.customMinutes.focus;
+      document.getElementById('pomoTabShortMin').textContent = state.pomodoro.customMinutes.short;
+      document.getElementById('pomoTabLongMin').textContent = state.pomodoro.customMinutes.long;
+
+      document.getElementById('pomoTabFocus').setAttribute('data-pomo-sec', state.pomodoro.customMinutes.focus * 60);
+      document.getElementById('pomoTabShort').setAttribute('data-pomo-sec', state.pomodoro.customMinutes.short * 60);
+      document.getElementById('pomoTabLong').setAttribute('data-pomo-sec', state.pomodoro.customMinutes.long * 60);
+
+      if (state.pomodoro.mode === modeKey) {
+        state.pomodoro.running = false;
+        state.pomodoro.totalSec = clamped * 60;
+        state.pomodoro.remainSec = clamped * 60;
+        document.getElementById('pomoReadout').textContent = formatTimerSeconds(state.pomodoro.remainSec);
+        document.getElementById('pomoStartBtn').textContent = '집중 시작';
+      }
+    }
+
+    function updateSecondIntervalTasks() {
+      let multiChanged = false;
+      state.timer.multiTimers.forEach(mt => {
+        if (mt.running && mt.remainSec > 0) {
+          mt.remainSec--;
+          multiChanged = true;
+          if (mt.remainSec <= 0) {
+            mt.running = false;
+            triggerTimerAlarm(`⚡ 멀티 타이머 완료: ${mt.name}`);
+          }
+        }
+      });
+      if (multiChanged) renderMultiTimers();
+
+      if (state.pomodoro.running) {
+        state.pomodoro.remainSec--;
+        if (state.pomodoro.remainSec <= 0) {
+          state.pomodoro.running = false;
+          state.pomodoro.completedSessions++;
+          document.getElementById('pomoSessionCount').textContent = `완료 세션: ${state.pomodoro.completedSessions} 🔥`;
+          document.getElementById('pomoStartBtn').textContent = '집중 시작';
+          triggerTimerAlarm('🧠 포모도로 세션이 완료되었습니다!');
+        }
+        document.getElementById('pomoReadout').textContent = formatTimerSeconds(state.pomodoro.remainSec);
+      }
+    }
+
+    function updateBreathingGuide(perfNow) {
+      if (!state.breathing.running) return;
+      const elapsedSec = ((perfNow - state.breathing.startTime) / 1000) % 19;
+      const orb = document.getElementById('breathOrb');
+      const phaseEl = document.getElementById('breathPhaseText');
+      const secEl = document.getElementById('breathSecText');
+
+      if (elapsedSec < 4) {
+        const p = elapsedSec / 4;
+        const scale = 1 + p * 0.85;
+        orb.style.transform = `scale(${scale.toFixed(3)})`;
+        phaseEl.textContent = '들숨 (코로 마시기)';
+        secEl.textContent = `${Math.ceil(4 - elapsedSec)}초`;
+      } else if (elapsedSec < 11) {
+        orb.style.transform = 'scale(1.85)';
+        phaseEl.textContent = '멈춤 (호흡 유지)';
+        secEl.textContent = `${Math.ceil(11 - elapsedSec)}초`;
+      } else {
+        const p = (elapsedSec - 11) / 8;
+        const scale = 1.85 - p * 0.85;
+        orb.style.transform = `scale(${scale.toFixed(3)})`;
+        phaseEl.textContent = '날숨 (입으로 뱉기)';
+        secEl.textContent = `${Math.ceil(19 - elapsedSec)}초`;
+      }
+    }
+
+    function updateMetronomeLoop(perfNow) {
+      if (!state.metronome.running) return;
+      const intervalMs = 60000 / state.metronome.bpm;
+      if (perfNow >= state.metronome.nextNoteTime) {
+        state.metronome.nextNoteTime = perfNow + intervalMs;
+        const beat = state.metronome.beatIndex % 4;
+        playSfx(beat === 0 ? 'metroAccent' : 'metroBeat');
+
+        const dots = document.getElementById('metroBeatDots').children;
+        for (let i = 0; i < dots.length; i++) {
+          if (i === beat) {
+            dots[i].className = 'w-3.5 h-3.5 rounded-full bg-sky-400 scale-125 shadow-lg transition-all';
+          } else {
+            dots[i].className = 'w-3.5 h-3.5 rounded-full bg-white/20 transition-all';
+          }
+        }
+        if (beat === 0) {
+          spawnShockwave(window.innerWidth / 2, window.innerHeight / 2, 140);
+        }
+        state.metronome.beatIndex++;
+      }
+    }
+
+    // =========================================================================
+    // 10. UI EVENT LISTENERS & RIPPLE EFFECTS
+    // =========================================================================
+    function attachRippleEffects() {
+      document.querySelectorAll('.ripple-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          const rect = this.getBoundingClientRect();
+          const diameter = Math.max(rect.width, rect.height);
+          const radius = diameter / 2;
+          const circle = document.createElement('span');
+          circle.style.width = circle.style.height = `${diameter}px`;
+          circle.style.left = `${e.clientX - rect.left - radius}px`;
+          circle.style.top = `${e.clientY - rect.top - radius}px`;
+          circle.classList.add('ripple-Wave');
+          const existing = this.querySelector('.ripple-Wave');
+          if (existing) existing.remove();
+          this.appendChild(circle);
+        });
+      });
+    }
+
+    function syncHiddenAlarmTime() {
+      const h = Math.max(0, Math.min(23, parseInt(document.getElementById('newAlarmHour').value, 10) || 0));
+      const m = Math.max(0, Math.min(59, parseInt(document.getElementById('newAlarmMin').value, 10) || 0));
+      const hStr = String(h).padStart(2, '0');
+      const mStr = String(m).padStart(2, '0');
+      document.getElementById('newAlarmHour').value = hStr;
+      document.getElementById('newAlarmMin').value = mStr;
+      document.getElementById('newAlarmTime').value = `${hStr}:${mStr}`;
+    }
+
+    function initEvents() {
+      navBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.getAttribute('data-target-view'), 10);
+          switchView(idx);
+        });
+      });
+
+      const fxBoostBtn = document.getElementById('fxBoostBtn');
+      const fxBoostLabel = document.getElementById('fxBoostLabel');
+      fxBoostBtn.addEventListener('click', (e) => {
+        state.bgModeIndex = (state.bgModeIndex + 1) % BG_MODES.length;
+        fxBoostLabel.textContent = BG_MODES[state.bgModeIndex];
+        state.warpBoost = 18;
+        spawnParticleBurst(e.clientX, e.clientY, 28);
+        playSfx('shockwave');
+      });
+
+      const faceBtn = document.getElementById('clockFaceModeBtn');
+      const faceLabels = ['🌀 모드: 아날로그 자이로', '🪐 모드: 폴라 오비탈 링', '💻 모드: 바이너리 매트릭스'];
+      faceBtn.addEventListener('click', (e) => {
+        state.clock.faceMode = (state.clock.faceMode + 1) % 3;
+        faceBtn.textContent = faceLabels[state.clock.faceMode];
+        document.getElementById('clockFaceAnalog').classList.toggle('hidden', state.clock.faceMode !== 0);
+        document.getElementById('clockFaceAnalog').classList.toggle('flex', state.clock.faceMode === 0);
+        document.getElementById('clockFacePolar').classList.toggle('hidden', state.clock.faceMode !== 1);
+        document.getElementById('clockFacePolar').classList.toggle('flex', state.clock.faceMode === 1);
+        document.getElementById('clockFaceBinary').classList.toggle('hidden', state.clock.faceMode !== 2);
+        document.getElementById('clockFaceBinary').classList.toggle('flex', state.clock.faceMode === 2);
+        playSfx('swoosh');
+        spawnParticleBurst(e.clientX, e.clientY, 24);
+      });
+
+      document.getElementById('speakTimeBtn').addEventListener('click', speakCurrentTime);
+
+      document.getElementById('fireworkTestBtn').addEventListener('click', (e) => {
+        state.warpBoost = 22;
+        spawnParticleBurst(e.clientX || window.innerWidth / 2, e.clientY || window.innerHeight / 2, 42);
+        playSfx('shockwave');
+      });
+
+      document.querySelectorAll('[data-theme-btn]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const newTheme = btn.getAttribute('data-theme-btn');
+          state.theme = newTheme;
+          document.body.setAttribute('data-theme', newTheme);
+          document.querySelectorAll('[data-theme-btn]').forEach(b => {
+            b.classList.remove('ring-2', 'ring-white', 'scale-110', 'opacity-100');
+            b.classList.add('opacity-60');
+          });
+          btn.classList.remove('opacity-60');
+          btn.classList.add('ring-2', 'ring-white', 'scale-110', 'opacity-100');
+          playSfx('shockwave');
+          spawnParticleBurst(e.clientX, e.clientY, 28);
+        });
+      });
+
+      document.getElementById('soundToggleBtn').addEventListener('click', () => {
+        state.soundEnabled = !state.soundEnabled;
+        document.getElementById('soundOnIcon').classList.toggle('hidden', !state.soundEnabled);
+        document.getElementById('soundOffIcon').classList.toggle('hidden', state.soundEnabled);
+        if (!state.soundEnabled) stopAmbientSound();
+        if (state.soundEnabled) playSfx('click');
+      });
+
+      const apkModal = document.getElementById('apkModal');
+      document.getElementById('apkGuideBtn').addEventListener('click', () => {
+        apkModal.classList.remove('hidden');
+        apkModal.classList.add('flex');
+        playSfx('click');
+      });
+      const closeModal = () => {
+        apkModal.classList.add('hidden');
+        apkModal.classList.remove('flex');
+        playSfx('click');
+      };
+      document.getElementById('closeApkModalBtn').addEventListener('click', closeModal);
+      document.getElementById('confirmApkModalBtn').addEventListener('click', closeModal);
+
+      const toggle24hBtn = document.getElementById('toggle24hBtn');
+      toggle24hBtn.addEventListener('click', () => {
+        state.clock.use24h = !state.clock.use24h;
+        toggle24hBtn.textContent = state.clock.use24h ? '24H' : '12H';
+        playSfx('click');
+      });
+
+      const toggleTickSoundBtn = document.getElementById('toggleTickSoundBtn');
+      toggleTickSoundBtn.addEventListener('click', () => {
+        state.clock.tickSound = !state.clock.tickSound;
+        toggleTickSoundBtn.textContent = state.clock.tickSound ? '초침음 ON' : '초침음 OFF';
+        toggleTickSoundBtn.classList.toggle('text-sky-300', state.clock.tickSound);
+        toggleTickSoundBtn.classList.toggle('text-slate-300', !state.clock.tickSound);
+        playSfx('click');
+      });
+
+      document.querySelectorAll('.tz-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          state.clock.selectedTz = card.getAttribute('data-tz');
+          state.clock.selectedLabel = card.getAttribute('data-label');
+          document.getElementById('clockZoneLabel').textContent = state.clock.selectedLabel;
+          document.querySelectorAll('.tz-card').forEach(c => {
+            c.className = 'tz-card ripple-btn rounded-xl p-2 text-left transition bg-slate-900/75 border border-white/15 hover:bg-slate-800';
+          });
+          card.className = 'tz-card ripple-btn rounded-xl p-2 text-left transition bg-sky-500/20 border border-sky-400 shadow-md';
+          playSfx('click');
+          spawnParticleBurst(e.clientX, e.clientY, 18);
+        });
+      });
+
+      // Stopwatch
+      document.getElementById('swStartStopBtn').addEventListener('click', toggleStopwatch);
+      document.getElementById('swLapResetBtn').addEventListener('click', lapOrResetStopwatch);
+      document.getElementById('swCopyCsvBtn').addEventListener('click', (e) => {
+        if (state.stopwatch.laps.length === 0) return;
+        const rows = ['Lap,Split(ms),Total(ms)'];
+        state.stopwatch.laps.forEach(l => rows.push(`${l.lapNum},${Math.round(l.splitMs)},${Math.round(l.totalMs)}`));
+        const csvText = rows.join('\n');
+        try {
+          navigator.clipboard.writeText(csvText);
+        } catch (err) {}
+        const btn = e.currentTarget;
+        btn.textContent = '✅ 복사 완료!';
+        setTimeout(() => { btn.textContent = '📋 기록 복사(CSV)'; }, 1500);
+        playSfx('lap');
+      });
+
+      // Timer
+      document.getElementById('timerStartPauseBtn').addEventListener('click', toggleTimer);
+      document.getElementById('timerResetBtn').addEventListener('click', resetTimer);
+      document.getElementById('dismissAlarmBtn').addEventListener('click', stopTimerAlarm);
+
+      document.querySelectorAll('.timer-preset-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const sec = parseInt(btn.getAttribute('data-preset'), 10);
+          if (sec === 60 && state.timer.running) {
+            state.timer.totalMs += 60000;
+            state.timer.remainMs += 60000;
+            state.timer.endTime += 60000;
+            syncTimerStepperLabels();
+          } else {
+            setTimerDurationSeconds(sec);
+          }
+          playSfx('click');
+          spawnParticleBurst(e.clientX, e.clientY, 20);
+        });
+      });
+
+      document.querySelectorAll('.timer-adj-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          if (state.timer.running) return;
+          const deltaSec = parseInt(btn.getAttribute('data-adj-sec'), 10);
+          const currentSec = Math.round(state.timer.remainMs / 1000);
+          setTimerDurationSeconds(currentSec + deltaSec);
+          playSfx('click');
+          spawnShockwave(e.clientX, e.clientY, 100);
+        });
+      });
+
+      document.querySelectorAll('.multi-add-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const sec = parseInt(btn.getAttribute('data-add-multi'), 10);
+          const name = btn.getAttribute('data-multi-name');
+          state.timer.multiTimers.unshift({
+            id: Date.now(),
+            name,
+            totalSec: sec,
+            remainSec: sec,
+            running: true
+          });
+          if (state.timer.multiTimers.length > 3) state.timer.multiTimers.pop();
+          renderMultiTimers();
+          playSfx('start');
+          spawnParticleBurst(e.clientX, e.clientY, 18);
+        });
+      });
+
+      // Alarm Custom Hour/Min Steppers & Quick +1 Min
+      document.getElementById('alarmHMinus').addEventListener('click', () => {
+        const cur = parseInt(document.getElementById('newAlarmHour').value, 10) || 0;
+        document.getElementById('newAlarmHour').value = (cur + 23) % 24;
+        syncHiddenAlarmTime();
+        playSfx('click');
+      });
+      document.getElementById('alarmHPlus').addEventListener('click', () => {
+        const cur = parseInt(document.getElementById('newAlarmHour').value, 10) || 0;
+        document.getElementById('newAlarmHour').value = (cur + 1) % 24;
+        syncHiddenAlarmTime();
+        playSfx('click');
+      });
+      document.getElementById('alarmMMinus').addEventListener('click', () => {
+        const cur = parseInt(document.getElementById('newAlarmMin').value, 10) || 0;
+        document.getElementById('newAlarmMin').value = (cur + 59) % 60;
+        syncHiddenAlarmTime();
+        playSfx('click');
+      });
+      document.getElementById('alarmMPlus').addEventListener('click', () => {
+        const cur = parseInt(document.getElementById('newAlarmMin').value, 10) || 0;
+        document.getElementById('newAlarmMin').value = (cur + 1) % 60;
+        syncHiddenAlarmTime();
+        playSfx('click');
+      });
+      document.getElementById('newAlarmHour').addEventListener('change', syncHiddenAlarmTime);
+      document.getElementById('newAlarmMin').addEventListener('change', syncHiddenAlarmTime);
+
+      document.getElementById('addAlarmBtn').addEventListener('click', (e) => {
+        syncHiddenAlarmTime();
+        const timeVal = document.getElementById('newAlarmTime').value || '07:30';
+        const labelVal = document.getElementById('newAlarmLabel').value.trim() || '스마트 알람';
+        const mathLock = document.getElementById('newAlarmMathCheck').checked;
+        state.alarms.unshift({
+          id: Date.now(),
+          time: timeVal,
+          label: labelVal,
+          enabled: true,
+          mathLock,
+          lastTriggeredMinute: ''
+        });
+        renderAlarmsList();
+        playSfx('start');
+        spawnParticleBurst(e.clientX, e.clientY, 24);
+      });
+
+      document.getElementById('add1MinAlarmBtn').addEventListener('click', (e) => {
+        const nextMin = new Date(Date.now() + 60000);
+        const hh = String(nextMin.getHours()).padStart(2, '0');
+        const mm = String(nextMin.getMinutes()).padStart(2, '0');
+        const timeVal = `${hh}:${mm}`;
+        state.alarms.unshift({
+          id: Date.now(),
+          time: timeVal,
+          label: '1분 뒤 빠른 테스트 알람',
+          enabled: true,
+          mathLock: document.getElementById('newAlarmMathCheck').checked,
+          lastTriggeredMinute: ''
+        });
+        renderAlarmsList();
+        playSfx('start');
+        spawnParticleBurst(e.clientX, e.clientY, 24);
+      });
+
+      document.getElementById('testMathAlarmBtn').addEventListener('click', () => {
+        const useMath = document.getElementById('newAlarmMathCheck').checked;
+        openAlarmModal('🚨 스마트 알람 즉시 체험!', useMath);
+      });
+
+      document.getElementById('mathSubmitBtn').addEventListener('click', () => {
+        const val = parseInt(document.getElementById('mathAnswerInput').value, 10);
+        if (val === state.mathChallenge.answer) {
+          closeAlarmModal();
+          spawnParticleBurst(window.innerWidth / 2, window.innerHeight / 2, 48);
+        } else {
+          document.getElementById('mathFeedbackText').textContent = '오답입니다! 다시 입력해 주세요.';
+          playSfx('alarm');
+        }
+      });
+
+      document.getElementById('forceDismissAlarmModalBtn').addEventListener('click', () => {
+        closeAlarmModal();
+      });
+
+      document.getElementById('snoozeAlarmModalBtn').addEventListener('click', () => {
+        closeAlarmModal();
+        const snoozeDate = new Date(Date.now() + 5 * 60000);
+        const hh = String(snoozeDate.getHours()).padStart(2, '0');
+        const mm = String(snoozeDate.getMinutes()).padStart(2, '0');
+        state.alarms.unshift({
+          id: Date.now(),
+          time: `${hh}:${mm}`,
+          label: '💤 5분 스누즈 알람',
+          enabled: true,
+          mathLock: false,
+          lastTriggeredMinute: ''
+        });
+        renderAlarmsList();
+      });
+
+      // Pomodoro Mode Tabs & Custom Duration Controls
+      const modeTitles = {
+        focus: 'DEEP WORK FOCUS',
+        short: 'SHORT RECHARGE BREAK',
+        long: 'LONG RECOVERY BREAK'
+      };
+
+      document.querySelectorAll('.pomo-mode-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modeKey = btn.getAttribute('data-pomo-mode');
+          const sec = state.pomodoro.customMinutes[modeKey] * 60;
+          state.pomodoro.mode = modeKey;
+          state.pomodoro.running = false;
+          state.pomodoro.totalSec = sec;
+          state.pomodoro.remainSec = sec;
+          document.getElementById('pomoModeTitle').textContent = modeTitles[modeKey];
+          document.getElementById('pomoReadout').textContent = formatTimerSeconds(sec);
+          document.getElementById('pomoStartBtn').textContent = '집중 시작';
+          document.querySelectorAll('.pomo-mode-btn').forEach(b => {
+            b.className = 'pomo-mode-btn ripple-btn py-2 rounded-xl text-xs font-bold glass-pill text-slate-200';
+          });
+          btn.className = 'pomo-mode-btn ripple-btn py-2 rounded-xl text-xs font-black bg-sky-500/25 border border-sky-400 text-white';
+          playSfx('click');
+        });
+      });
+
+      document.querySelectorAll('.pomo-custom-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modeKey = btn.getAttribute('data-pomo-adj');
+          const delta = parseInt(btn.getAttribute('data-delta'), 10);
+          const nextMin = state.pomodoro.customMinutes[modeKey] + delta;
+          applyCustomPomodoroMinutes(modeKey, nextMin);
+          playSfx('click');
+        });
+      });
+
+      document.getElementById('pomoInputFocus').addEventListener('change', (e) => {
+        applyCustomPomodoroMinutes('focus', e.target.value);
+      });
+      document.getElementById('pomoInputShort').addEventListener('change', (e) => {
+        applyCustomPomodoroMinutes('short', e.target.value);
+      });
+      document.getElementById('pomoInputLong').addEventListener('change', (e) => {
+        applyCustomPomodoroMinutes('long', e.target.value);
+      });
+
+      document.getElementById('pomoStartBtn').addEventListener('click', (e) => {
+        state.pomodoro.running = !state.pomodoro.running;
+        e.currentTarget.textContent = state.pomodoro.running ? '일시정지' : '계속';
+        playSfx(state.pomodoro.running ? 'start' : 'stop');
+        if (state.pomodoro.running) spawnParticleBurst(e.clientX, e.clientY, 24);
+      });
+
+      document.getElementById('pomoResetBtn').addEventListener('click', () => {
+        state.pomodoro.running = false;
+        state.pomodoro.totalSec = state.pomodoro.customMinutes[state.pomodoro.mode] * 60;
+        state.pomodoro.remainSec = state.pomodoro.totalSec;
+        document.getElementById('pomoReadout').textContent = formatTimerSeconds(state.pomodoro.totalSec);
+        document.getElementById('pomoStartBtn').textContent = '집중 시작';
+        playSfx('click');
+      });
+
+      document.querySelectorAll('.ambient-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          toggleAmbientSound(btn.getAttribute('data-ambient'));
+        });
+      });
+
+      // Metronome & Breathing
+      const metroSlider = document.getElementById('metroBpmSlider');
+      metroSlider.addEventListener('input', () => {
+        state.metronome.bpm = parseInt(metroSlider.value, 10);
+        document.getElementById('metroBpmReadout').textContent = state.metronome.bpm;
+      });
+
+      document.getElementById('metroToggleBtn').addEventListener('click', (e) => {
+        state.metronome.running = !state.metronome.running;
+        state.metronome.beatIndex = 0;
+        state.metronome.nextNoteTime = performance.now();
+        e.currentTarget.textContent = state.metronome.running ? '정지' : '재생';
+        playSfx('click');
+      });
+
+      document.getElementById('metroTapBtn').addEventListener('click', (e) => {
+        const nowMs = performance.now();
+        state.metronome.tapTimes.push(nowMs);
+        if (state.metronome.tapTimes.length > 5) state.metronome.tapTimes.shift();
+        if (state.metronome.tapTimes.length >= 2) {
+          let sumDiff = 0;
+          for (let i = 1; i < state.metronome.tapTimes.length; i++) {
+            sumDiff += (state.metronome.tapTimes[i] - state.metronome.tapTimes[i - 1]);
+          }
+          const avgDiff = sumDiff / (state.metronome.tapTimes.length - 1);
+          const tappedBpm = Math.max(40, Math.min(220, Math.round(60000 / avgDiff)));
+          state.metronome.bpm = tappedBpm;
+          metroSlider.value = tappedBpm;
+          document.getElementById('metroBpmReadout').textContent = tappedBpm;
+        }
+        playSfx('metroAccent');
+        spawnShockwave(e.clientX, e.clientY, 110);
+      });
+
+      document.getElementById('breathToggleBtn').addEventListener('click', (e) => {
+        state.breathing.running = !state.breathing.running;
+        state.breathing.startTime = performance.now();
+        e.currentTarget.textContent = state.breathing.running ? '호흡 가이드 중지' : '호흡 가이드 시작';
+        if (!state.breathing.running) {
+          document.getElementById('breathOrb').style.transform = 'scale(1)';
+          document.getElementById('breathPhaseText').textContent = '대기 중';
+          document.getElementById('breathSecText').textContent = '4-7-8';
+        }
+        playSfx('start');
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.key >= '1' && e.key <= '6') switchView(parseInt(e.key, 10) - 1);
+        if (e.key === 'ArrowRight') switchView(Math.min(5, state.activeView + 1));
+        if (e.key === 'ArrowLeft') switchView(Math.max(0, state.activeView - 1));
+        if (e.code === 'Space') {
+          e.preventDefault();
+          if (state.activeView === 1) toggleStopwatch();
+          if (state.activeView === 2) toggleTimer();
+        }
+        if (e.key.toLowerCase() === 'l' && state.activeView === 1 && state.stopwatch.running) {
+          lapOrResetStopwatch();
+        }
+        if (e.key.toLowerCase() === 'r') {
+          if (state.activeView === 1 && !state.stopwatch.running) lapOrResetStopwatch();
+          if (state.activeView === 2) resetTimer();
+        }
+      });
+
+      window.addEventListener('resize', resizeBgCanvas);
+    }
+
+    // =========================================================================
+    // 11. MASTER 60FPS ANIMATION LOOP
+    // =========================================================================
+    let lastSecTick = Math.floor(Date.now() / 1000);
+
+    function masterLoop(perfNow) {
+      const now = new Date();
+      const curSec = Math.floor(now.getTime() / 1000);
+      if (curSec !== lastSecTick) {
+        lastSecTick = curSec;
+        updateSecondIntervalTasks();
+      }
+
+      // Always run lightweight clock & alarm check on 0, or once per second when on other tabs
+      if (state.activeView === 0 || now.getSeconds() !== state.clock.lastSecond) {
+        updateClockView(now);
+      }
+      if (state.activeView === 1 || state.stopwatch.running) {
+        updateStopwatchView(perfNow);
+      }
+      if (state.activeView === 2 || state.timer.running) {
+        updateTimerView();
+      }
+      if (state.metronome.running) {
+        updateMetronomeLoop(perfNow);
+      }
+      if (state.breathing.running && state.activeView === 5) {
+        updateBreathingGuide(perfNow);
+      }
+      requestAnimationFrame(masterLoop);
+    }
+
+    window.onload = () => {
+      buildClockTicks();
+      initBinaryGrid();
+      initStarsAndBubbles();
+      renderMultiTimers();
+      renderAlarmsList();
+      attachRippleEffects();
+      initEvents();
+      syncTimerStepperLabels();
+      setTimeout(() => {
+        spawnParticleBurst(window.innerWidth / 2, window.innerHeight / 2, 32);
+      }, 220);
+      requestAnimationFrame(masterLoop);
+    };
+  </script>
+</body>
+</html>
